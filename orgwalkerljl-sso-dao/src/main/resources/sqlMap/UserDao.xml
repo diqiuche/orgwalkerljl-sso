@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.walkerljl.sso.dao.UserDao">
+	<!-- ======================= 以下sql需要根据表结构自定义 =========================================================================== -->
+	<!-- 定义实体映射 -->
+	<resultMap type="user" id="resultMap">
+		<result property="id" column="id" />
+		<result property="accountNo" column="account_no" />
+		<result property="password" column="password" />
+		<result property="salt" column="salt" />
+		<result property="lastLoginDate" column="last_login_date" />
+		<result property="remark" column="remark" />
+		<result property="status" column="status" />
+		<result property="createDate" column="create_date" />
+		<result property="createUserId" column="create_user_id" />
+		<result property="createUserName" column="create_user_name" />
+		<result property="lastModifyDate" column="last_modify_date" />
+		<result property="lastModifyUserId" column="last_modify_user_id" />
+		<result property="lastModifyUserName" column="last_modify_user_name" />
+	</resultMap>
+
+	<!-- 表名 -->
+	<sql id="TABLE_NAME"><![CDATA[sso_user]]></sql>
+
+	<!-- 插入字段 -->
+	<sql id="INSERT_COLUMNS">
+  		<![CDATA[(account_no,password,salt,last_login_date]]>
+		<include refid="org.walkerljl.sso.dao.BaseDao.INSERT_COLUMNS" />
+  		<![CDATA[)]]>
+	</sql>
+
+	<!-- 插入字段值 -->
+	<sql id="INSERT_VALUES">
+		<![CDATA[(#{accountNo},#{password},#{salt},#{lastLoginDate}]]>
+		<include refid="org.walkerljl.sso.dao.BaseDao.INSERT_VALUES" />
+  		<![CDATA[)]]>
+	</sql>
+
+	<!-- 批量插入字段值 -->
+	<sql id="BATCH_INSERT_VALUES">
+		<![CDATA[(#{item.accountNo},#{item.password},#{item.salt},#{item.lastLoginDate}]]>
+		<include refid="org.walkerljl.sso.dao.BaseDao.BATCH_INSERT_VALUES" />
+  		<![CDATA[)]]>
+	</sql>
+
+	<!-- 删除条件 -->
+	<sql id="DELETE_BY_CONDITION_WHERE_CLAUSE">
+		<where>
+			<if test="id != null"><![CDATA[AND id = #{id}]]></if>
+			<if test="accountNo != null and accountNo != ''"><![CDATA[AND account_no = #{accountNo}]]></if>
+			<if test="password != null and password != ''"><![CDATA[AND password = #{password}]]></if>
+			<if test="salt != null and salt != ''"><![CDATA[AND salt = #{salt}]]></if>
+			<if test="lastLoginDate != null and lastLoginDate != ''"><![CDATA[AND last_login_date = #{lastLoginDate}]]></if>
+			<include refid="org.walkerljl.sso.dao.BaseDao.DELETE_BY_CONDITION_WHERE_CLAUSE" />
+		</where>
+	</sql>
+
+	<!-- 更新列字段,字段不为NULL则更新,除开主键 -->
+	<sql id="UPDATE_COLUMN_SET">
+		<set>
+			<if test="accountNo != null and accountNo != ''"><![CDATA[a.account_no = #{accountNo},]]></if>
+			<if test="password != null and password != ''"><![CDATA[a.password = #{password},]]></if>
+			<if test="salt != null and salt != ''"><![CDATA[a.salt = #{salt},]]></if>
+			<if test="lastLoginDate != null and lastLoginDate != ''"><![CDATA[a.last_login_date = #{lastLoginDate},]]></if>
+			<include refid="org.walkerljl.sso.dao.BaseDao.UPDATE_COLUMN_SET" />
+		</set>
+	</sql>
+
+	<!-- 实体对应表中的所有字段 -->
+	<sql id="QUERY_COLUMN_LIST">
+		<![CDATA[a.id,a.account_no,a.password,a.salt,a.last_login_date]]>
+		<include refid="org.walkerljl.sso.dao.BaseDao.QUERY_COLUMN_LIST" />
+	</sql>
+
+	<!-- 全部查询条件 -->
+	<sql id="QUERY_WHERE_CLAUSE">
+		<where>
+			<if test="id != null"><![CDATA[AND a.id = #{id}]]></if>
+			<if test="accountNo != null and accountNo != ''"><![CDATA[AND a.account_no = #{accountNo}]]></if>
+			<if test="password != null and password != ''"><![CDATA[AND a.password = #{password}]]></if>
+			<if test="salt != null and salt != ''"><![CDATA[AND a.salt = #{salt}]]></if>
+			<if test="lastLoginDate != null and lastLoginDate != ''"><![CDATA[AND a.last_login_date = #{lastLoginDate}]]></if>
+			<include refid="org.walkerljl.sso.dao.BaseDao.QUERY_WHERE_CLAUSE" />
+		</where>
+	</sql>
+	<!-- ======================= 自定义SQL =========================================================================== -->
+	<!-- ======================= 以下sql只需要修改 parameterType值 =========================================================================== -->
+	<!-- 排序 -->
+	<sql id="QUERY_ORDER_CONDITION">
+  		<![CDATA[order by a.id desc]]>
+	</sql>
+
+	<!-- 分页 -->
+	<sql id="QUERY_LIMIT_CONDITION">
+		<if
+			test="startIndex !=null and startIndex &gt;= 0 and pageSize !=null and pageSize &gt; 0">
+  			<![CDATA[LIMIT #{startIndex},#{pageSize}]]>
+		</if>
+	</sql>
+
+	<!-- 主键列表WHERE语句 -->
+	<sql id="KEYS_FOREACH_CLAUSE">
+		<foreach collection="list" open="(" separator="," close=")"
+			item="item" index="index">
+			<![CDATA[#{item}]]>
+		</foreach>
+	</sql>
+
+	<!-- 添加,自动填充主键字段值 -->
+	<insert id="insert" parameterType="user" useGeneratedKeys="true"
+		keyProperty="id">
+		<![CDATA[INSERT INTO]]>
+		<include refid="TABLE_NAME" />
+		<include refid="INSERT_COLUMNS" />
+		<![CDATA[VALUES]]>
+		<include refid="INSERT_VALUES" />
+	</insert>
+
+	<!-- 批量添加 -->
+	<insert id="batchInsert" parameterType="java.util.List">
+		<![CDATA[INSERT INTO]]>
+		<include refid="TABLE_NAME" />
+		<include refid="INSERT_COLUMNS" />
+		<![CDATA[VALUES]]>
+		<foreach collection="list" separator="," item="item" index="index">
+			<include refid="BATCH_INSERT_VALUES" />
+		</foreach>
+	</insert>
+
+	<!-- 删除,主键列表 -->
+	<delete id="deleteByKeys" parameterType="java.util.List">
+		<![CDATA[DELETE FROM]]>
+		<include refid="TABLE_NAME" /> 
+		<![CDATA[WHERE id IN]]>
+		<include refid="KEYS_FOREACH_CLAUSE" />
+	</delete>
+
+	<!-- 删除,字段不为NULL则为删除条件 -->
+	<delete id="deleteByCondition" parameterType="user">
+		<![CDATA[DELETE FROM]]>
+		<include refid="TABLE_NAME" />
+		<include refid="DELETE_BY_CONDITION_WHERE_CLAUSE" />
+	</delete>
+
+	<!-- 更新状态,主键列表 -->
+	<update id="updateStatusByKeys" parameterType="java.util.Map">
+		<![CDATA[UPDATE]]>
+		<include refid="TABLE_NAME" />
+		<![CDATA[a]]>
+		<include refid="UPDATE_COLUMN_SET" /> 
+		<![CDATA[WHERE a.id IN]]>
+		<include refid="KEYS_FOREACH_CLAUSE" />
+	</update>
+
+	<!-- 更新,主键 -->
+	<update id="updateByKey" parameterType="user">
+		<![CDATA[UPDATE]]>
+		<include refid="TABLE_NAME" />
+		<![CDATA[a]]>
+		<include refid="UPDATE_COLUMN_SET" />
+		<![CDATA[WHERE a.id = #{id}]]>
+	</update>
+
+	<!-- 查询,主键 -->
+	<select id="selectByKey" parameterType="long" resultMap="resultMap">
+		<![CDATA[SELECT]]>
+		<include refid="QUERY_COLUMN_LIST" />
+    	<![CDATA[FROM]]>
+		<include refid="TABLE_NAME" />
+  		<![CDATA[a WHERE a.id = #{id}]]>
+	</select>
+
+	<!-- 查询,主键列表 -->
+	<select id="selectListByKeys" parameterType="java.util.List"
+		resultMap="resultMap">
+  		<![CDATA[SELECT]]>
+		<include refid="QUERY_COLUMN_LIST" />
+    	<![CDATA[FROM]]>
+		<include refid="TABLE_NAME" />
+    	<![CDATA[a WHERE a.id IN]]>
+		<include refid="KEYS_FOREACH_CLAUSE" />
+	</select>
+
+	<!-- 查询,字段不为NULL则为条件 -->
+	<select id="selectList" parameterType="user" resultMap="resultMap">
+		<![CDATA[SELECT]]>
+		<include refid="QUERY_COLUMN_LIST" />
+    	<![CDATA[FROM]]>
+		<include refid="TABLE_NAME" />
+		<![CDATA[a]]>
+		<include refid="QUERY_WHERE_CLAUSE" />
+		<include refid="QUERY_ORDER_CONDITION" />
+		<include refid="QUERY_LIMIT_CONDITION" />
+	</select>
+
+	<!-- 总数查询,字段不为NULL则为条件 -->
+	<select id="selectListCount" parameterType="user" resultType="int">
+  		<![CDATA[SELECT COUNT(1) FROM]]>
+		<include refid="TABLE_NAME" />
+  		<![CDATA[a]]>
+		<include refid="QUERY_WHERE_CLAUSE" />
+	</select>
+</mapper>

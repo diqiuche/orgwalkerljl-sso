@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</meta>
+<title>$!{pageTitle}</title>
+<!-- Loading Bootstrap css-->
+<link href="$!{staticRes}/plugin/bootstrap/css/bootstrap.min.css?v=$!{v}" rel="stylesheet"/>
+<link href="$!{staticRes}/plugin/bootstrap/css/font-awesome.min.css?v=$!{v}" rel="stylesheet">
+<link href="$!{staticRes}/css/login.css?v=$!{v}" rel="stylesheet"/>
+<link href="$!{staticRes}/css/base.css?v=$!{v}" rel="stylesheet"/>
+<script src="$!{staticRes}/plugin/jquery/jquery-1.7.2.min.js?v=$!{v}"></script>
+<script src="$!{staticRes}/plugin/jquery/jquery.MD5.js?v=$!{v}"></script>
+<script src="$!{staticRes}/js/jarvis.js?v=$!{v}"></script>
+<script src="$!{staticRes}/js/jarvis.controller.js?v=$!{v}"></script>
+</head>
+<body onkeydown="JARVIS.INDEX.keyLogin();">
+<div class="row-fluid">
+	<div class="span6 offset5">
+		<div class="brand"><i class="icon-key"></i>$!{pageTitle}</div>
+	</div>
+</div>
+
+<div class="login-container">
+	<div class="row-fluid">
+		<div class="span6" style="border-right: 1px solid #aaa;margin-top:5px">
+			<div class="left-container">
+				<h2>$!{pageTitle}</h2>
+				<div class="media">
+					<div class="pull-left" >
+						<img class="img-rounded" src="$!{staticRes}/img/login-revenue-illustration.png">
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading"></h4>
+						<div class="media">
+							<p class="text-left"><i class="icon-caret-right blue"></i> </p>
+				   			<p class="text-left"><i class="icon-caret-right blue"></i> </p>
+				     		<p class="text-left"><i class="icon-caret-right blue"></i> </p>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+		<div class="span6">
+			<div class="right-container">
+				<div class="widget-main no-padding">
+					<form action="$!{contextPath}/login" method="POST" name="login_form" id="login_form">
+						<h1 class="promotion">欢迎登录</h1>
+						#if($!{loginSuccess})
+							<font color="red">$!{tips}</font>##登录失败提示
+						#end
+						<fieldset>
+							<label>
+								<span class="block input-icon input-icon-right">
+									<input type="text" class="span12" placeholder="登 录 名" 
+										name="userId" id="userId" value="$!{currentUserId}"/>
+									<i class="icon-user"></i>
+								</span>
+							</label>
+
+							<label>
+								<span class="block input-icon input-icon-right">
+									<input type="password" class="span12" placeholder="密 码" name="password" id="password"/>
+									<i class="icon-lock"></i>
+								</span>
+							</label>
+							<div class="space"></div> 
+						</fieldset>
+						<br>
+						<button type="button" class="btn btn-danger btn-block" onclick="JARVIS.INDEX.login();">
+							<i class="icon-key"></i>
+							登录
+						</button>
+					</form>
+			    </div>
+		    </div>
+		</div>
+	</div>
+	<div id="bottom_link">
+        Copyright©2010-$!{currentYear}   <a href="#">AUTHOR</a> 版权所有
+    </div>
+</div>
+</body>
+##定义该模块初始化函数
+<SPAN class="script" page-load="JARVIS.INDEX.init();"></SPAN>
+##导入js
+<script src="$!{staticRes}/js/index.js?v=$!{v}"></script>

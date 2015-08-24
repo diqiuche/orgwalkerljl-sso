@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+    
+     <!-- 加载组件配置 -->
+	<import resource="classpath*:commons-dao.xml"/>
+	
+    <!-- 配置扫描指定包下的类 -->
+	<context:component-scan base-package="org.walkerljl.sso.dao"/>
+	<!-- 配置AOP切面 -->
+	<aop:aspectj-autoproxy/>
+	
+	<!-- 连接池使用BonCp -->
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
+		<property name="driverClass" value="${jdbc.driverClass}"/>
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="idleConnectionTestPeriodInMinutes" value="${jdbc.idleConnectionTestPeriod}"/>
+		<property name="idleMaxAgeInMinutes" value="${jdbc.idleMaxAge}"/>
+		<property name="maxConnectionsPerPartition" value="${jdbc.maxConnectionsPerPartition}"/>
+		<property name="minConnectionsPerPartition" value="${jdbc.minConnectionsPerPartition}"/>
+		<property name="partitionCount" value="${jdbc.partitionCount}"/>
+		<property name="acquireIncrement" value="${jdbc.acquireIncrement}"/>
+		<property name="statementsCacheSize" value="${jdbc.statementsCacheSize}"/>
+		<property name="releaseHelperThreads" value="${jdbc.releaseHelperThreads}"/>
+		<property name="connectionTimeoutInMs" value="${jdbc.connectionTimeoutInMs}"/>
+	</bean>
+	
+    <!-- mybatis sqlSessionFactory配置 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+    
+	<!-- MyBatis 的SqlSessionTemplate -->
+	<bean id="sqlTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"/>
+	</bean>
+</beans>

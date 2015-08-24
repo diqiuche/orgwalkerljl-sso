@@ -1,0 +1,23 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<!-- 加载配置文件 -->
+	<bean class="org.walkerljl.commons.mvc.CustomizedPropertyConfigurer">
+	<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:conf/important.properties</value>
+				<value>classpath:conf/db.properties</value>
+				<value>classpath:conf/sso.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 加载组件配置 -->
+	<import resource="classpath*:sso-mvc.xml" />
+</beans>
