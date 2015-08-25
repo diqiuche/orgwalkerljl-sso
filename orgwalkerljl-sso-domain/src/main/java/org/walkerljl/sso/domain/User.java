@@ -14,9 +14,11 @@ public class User extends BaseDomain {
 
 	private static final long serialVersionUID = 1L;
 
-	/** 登录账号*/
+	/** 账号Id*/
 	private String accountNo;
-	/** 登录密码*/
+	/** 账号名称*/
+	private String accountName;
+	/** 密码*/
 	private String password;
 	/** 随机盐*/
 	private String salt;
@@ -31,6 +33,14 @@ public class User extends BaseDomain {
 
 	public void setAccountNo(String accountNo) {
 		this.accountNo = accountNo;
+	}
+
+	public String getAccountName() {
+		return accountName;
+	}
+
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	}
 
 	public String getPassword() {

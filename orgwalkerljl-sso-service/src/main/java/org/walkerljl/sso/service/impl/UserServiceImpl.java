@@ -61,4 +61,8 @@ public class UserServiceImpl extends DefaultBaseServiceImpl<User, Long> implemen
 		}
 		return LoginResult.FAILURE;
 	}
+	
+	public static void main(String[] args) {
+		System.out.println(EncryptUtils.encryptByMD5(EncryptUtils.encryptByMD5(EncryptUtils.encryptByMD5("" + "99887745"))));
+	}
 }

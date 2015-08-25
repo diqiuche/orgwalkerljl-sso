@@ -5,7 +5,10 @@
  */
 package org.walkerljl.sso.web;
 
+import javax.annotation.Resource;
+
 import org.walkerljl.commons.mvc.init.DefaultStartUp;
+import org.walkerljl.sso.service.UserService;
 
 /**
  * CustomizedStartUp 
@@ -14,9 +17,10 @@ import org.walkerljl.commons.mvc.init.DefaultStartUp;
  */
 public class CustomizedStartUp extends DefaultStartUp {
 
+	@Resource private UserService userService;
 	
 	@Override
 	public void subProcess() {
-		
+		userService.selectByKey(1L);
 	}
 }
