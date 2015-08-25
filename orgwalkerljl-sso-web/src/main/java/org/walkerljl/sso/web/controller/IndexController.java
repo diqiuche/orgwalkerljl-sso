@@ -40,12 +40,6 @@ public class IndexController extends DefaultIndexController {
 	
 	@Resource private UserService userService;
 	
-	@RequestMapping(value = "/")
-	public ModelAndView index() {
-		sendRedirect(getRequest().getContextPath() + "/signin");
-		return null;
-	}
-	
 	@RequestMapping(value = "/signin")
 	public ModelAndView signin(LoginCommand command, String operate, String returnAddress) throws IOException {
 		ViewResult viewResult = new ViewResult();
@@ -69,6 +63,6 @@ public class IndexController extends DefaultIndexController {
 			}
 		}
 		viewResult.addModel("returnAddress", returnAddress);
-		return toViewResult(getTemplate("/index", "index"), viewResult);
+		return toViewResult(getTemplate("", "signin"), viewResult);
 	}
 }

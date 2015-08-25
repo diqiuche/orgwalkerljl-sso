@@ -34,7 +34,7 @@ public class UserAuthenticationTicket implements Serializable {
 	}
 	
 	public boolean isLogin() {
-		return userId != null && !userId.equals("") && System.currentTimeMillis() >= expires;
+		return userId != null && !userId.equals("") && System.currentTimeMillis() < expires;
 	}
 	
 	public static UserAuthenticationTicket parse(String valueString) {

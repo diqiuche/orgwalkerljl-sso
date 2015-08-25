@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>$!{appName}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="$!{staticRes}/plugin/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="$!{staticRes}/css/signin.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="$!{staticRes}/ie/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="$!{staticRes}/plugin/bootstrap/3.3.5/ie/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="$!{staticRes}/plugin/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="$!{staticRes}/plugin/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+      <form class="form-signin" method="post" action="$!{contextPath}/signin?returnAddress=$!{returnAddress}">
+      	<input type="hidden" id="operate" name="operate" />
+        <h2 class="form-signin-heading">$!{appName}</h2>
+        <p style="color:red;">$!{message}</p>
+        <label for="userId" class="sr-only">账号</label>
+        <input type="input" id="userId" name="userId" class="form-control" placeholder="账号" />
+        <label for="password" class="sr-only">密码</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="密码" />
+        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="signin();">登录</button>
+      </form>
+    </div> <!-- /container -->
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="$!{staticRes}/plugin/jquery/1.11.3/jquery.min.js"></script>
+    <script src="$!{staticRes}/plugin/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="$!{staticRes}/plugin/bootstrap/3.3.5/ie/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
+<script>
+	var signin = function() {
+		var userIdObj = $("#userId");
+		var passwordObj = $("#password");
+		if (userIdObj.val() == '') {
+			alert("登录账号不能为空");
+			userIdObj.focus();
+			return;
+		} else if (userIdObj.val().length >= 64) {
+			alert("登录账号长度不能超过64个字符");
+			userIdObj.focus();
+			return;
+		} else if (passwordObj.val() == '') {
+			alert("登录密码不能为空");
+			passwordObj.focus();
+			return;
+		} else if (passwordObj.val().length >= 64) {
+			alert("登录密码长度不能超过64个字符");
+			passwordObj.focus();
+			return;
+		}
+		$("#operate").val("signin");
+		$("#form-signin").submit();
+	}; 
+</script>

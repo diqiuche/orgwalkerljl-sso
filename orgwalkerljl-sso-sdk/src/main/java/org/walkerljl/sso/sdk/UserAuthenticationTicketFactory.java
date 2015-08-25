@@ -32,6 +32,9 @@ public class UserAuthenticationTicketFactory {
 			return ticket;
 		} else {
 			String encryptedCookieString = getCookieValue(request, ssoAuthCookieName);
+			if (encryptedCookieString == null || encryptedCookieString.equals("")) {
+				return null;
+			}
 			String decryptedCookieString = TicketStoreUtils.decrypt(encryptedCookieString, ssoAuthCookieKey);
 			return UserAuthenticationTicket.parse(decryptedCookieString);
 		}
@@ -42,13 +45,14 @@ public class UserAuthenticationTicketFactory {
 		ticket.setUserId(userId);
 		ticket.setUserName(userName);
 		long currentTime = System.currentTimeMillis();
-		ticket.setExpires(currentTime + 30 * 60 * 1000);
+		ticket.setExpires(currentTime + (30 * 60 * 1000));
 		ticket.setCreateDate(currentTime);
 		String encryptedCookieString = TicketStoreUtils.encrypt(ticket.toValueString(), ssoAuthCookieKey);
 		Cookie cookie = new Cookie(ssoAuthCookieName, encryptedCookieString);
 		cookie.setDomain(ssoCookieDomain);
 		cookie.setPath("/");
 		cookie.setMaxAge(30 * 60);
+		response.addCookie(cookie);
 		UserAuthenticationTicket.set(ticket);
 	}
 	
