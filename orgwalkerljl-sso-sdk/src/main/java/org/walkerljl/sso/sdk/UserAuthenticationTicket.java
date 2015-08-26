@@ -22,7 +22,11 @@ public class UserAuthenticationTicket implements Serializable {
 	public UserAuthenticationTicket() {}
 	
 	public static UserAuthenticationTicket getTicket() {
-		return HOLDER.get();
+		UserAuthenticationTicket instance = HOLDER.get();
+		if (instance != null && instance.isExpired()) {
+			remove();
+		}
+		return instance;
 	}
 	
 	public static void set(UserAuthenticationTicket ticket) {
@@ -34,7 +38,15 @@ public class UserAuthenticationTicket implements Serializable {
 	}
 	
 	public boolean isLogin() {
-		return userId != null && !userId.equals("") && System.currentTimeMillis() < expires;
+		boolean isLogin = (userId != null && !userId.equals("") && !isExpired());
+		if (!isLogin) {
+			UserAuthenticationTicket.remove();
+		}
+		return isLogin;
+	}
+	
+	public boolean isExpired() {
+		return System.currentTimeMillis() >= expires;
 	}
 	
 	public static UserAuthenticationTicket parse(String valueString) {

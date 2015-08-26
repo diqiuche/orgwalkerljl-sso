@@ -40,6 +40,14 @@ public class UserAuthenticationTicketFactory {
 		}
 	}
 	
+	public void deleteTicket(HttpServletResponse response) {
+		Cookie cookie = new Cookie(ssoAuthCookieName, null);
+		cookie.setDomain(ssoCookieDomain);
+		cookie.setPath("/");
+		cookie.setMaxAge(0);
+		response.addCookie(cookie);
+	}
+	
 	public void generateTicket(HttpServletResponse response, String userId, String userName) {
 		UserAuthenticationTicket ticket = new UserAuthenticationTicket();
 		ticket.setUserId(userId);

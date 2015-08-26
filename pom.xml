@@ -28,7 +28,7 @@
 				<db.username>root</db.username>
 				<db.password>123456</db.password>
 				
-				<static.resource.address>http://walkerljl.oicp.net/static</static.resource.address>
+				<static.resource.address>//dev.walkerljl.org/static</static.resource.address>
 
 				<!-- log -->
 				<log.name>sso</log.name>
@@ -37,10 +37,38 @@
 				
 				<!-- sso -->
 				<sso.auth.cookie.domain>.walkerljl.org</sso.auth.cookie.domain>
-				<sso.auth.cookie.name>sso.walkerljl.org</sso.auth.cookie.name>
+				<sso.auth.cookie.name>dev.sso.walkerljl.org</sso.auth.cookie.name>
 				<sso.auth.cookie.key>e4a52c13-9ec9-4353-826e-175660679c99</sso.auth.cookie.key>
-				<sso.auth.address>http://local.walkerljl.org:8080/sso/signin</sso.auth.address>
-				<sso.return.address>http://local.walkerljl.org:8080/sso</sso.return.address>
+				<sso.auth.address>//dev.walkerljl.org/sso/signin</sso.auth.address>
+				<sso.return.address>//dev.walkerljl.org/sso</sso.return.address>
+			</properties>
+		</profile>
+		
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<!-- db -->
+				<db.ip>127.0.0.1:3306</db.ip>
+				<db.name>sso_dev</db.name>
+				<db.username>root</db.username>
+				<db.password>123456</db.password>
+				
+				<static.resource.address>//dev.walkerljl.org/static</static.resource.address>
+
+				<!-- log -->
+				<log.name>sso</log.name>
+				<log.level>debug</log.level>
+				<log.file.name>/export/Logs/dev.sso.walkerljl.org/sso.log</log.file.name>
+				
+				<!-- sso -->
+				<sso.auth.cookie.domain>.walkerljl.org</sso.auth.cookie.domain>
+				<sso.auth.cookie.name>dev.sso.walkerljl.org</sso.auth.cookie.name>
+				<sso.auth.cookie.key>e4a52c13-9ec9-4353-826e-175660679c99</sso.auth.cookie.key>
+				<sso.auth.address>//dev.walkerljl.org/sso/signin</sso.auth.address>
+				<sso.return.address>//dev.walkerljl.org/sso</sso.return.address>
 			</properties>
 		</profile>
 		
@@ -56,7 +84,7 @@
 				<db.username>root</db.username>
 				<db.password>123456</db.password>
 				
-				<static.resource.address>http://walkerljl.oicp.net/static</static.resource.address>
+				<static.resource.address>//walkerljl.oicp.net/static</static.resource.address>
 
 				<!-- log -->
 				<log.name>sso</log.name>
@@ -67,8 +95,8 @@
 				<sso.auth.cookie.domain>.walkerljl.oicp.net</sso.auth.cookie.domain>
 				<sso.auth.cookie.name>sso.walkerljl.oicp.net</sso.auth.cookie.name>
 				<sso.auth.cookie.key>e4a52c13-9ec9-4353-826e-175660679c99</sso.auth.cookie.key>
-				<sso.auth.address>http://walkerljl.oicp.net/sso/signin</sso.auth.address>
-				<sso.return.address>http://walkerljl.oicp.net/sso</sso.return.address>
+				<sso.auth.address>//walkerljl.oicp.net/sso/signin</sso.auth.address>
+				<sso.return.address>//walkerljl.oicp.net/sso</sso.return.address>
 			</properties>
 		</profile>
 	</profiles>
