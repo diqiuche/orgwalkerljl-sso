@@ -1,0 +1,35 @@
+<nav>
+  <ul class="pagination">
+    <li>
+    	<span class="disabled">
+    		总共$!{model.totalCount}条数据，每页$!{model.pageSize}条，共$!{model.pageCount}页，第$!{model.currentPage}页
+    	</span>
+    </li>
+    <li>
+      <a href="javascript:void(0);" onclick="gotoPage($!{model.previousPage});" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    #set($endPos=$!{model.previousPage} + 4)
+    #foreach($currentPage in [$!{model.previousPage} .. $!{endPos}])
+    	#if($!{currentPage} <= $!{model.pageCount})
+    		<li #if($!{currentPage} == $!{model.currentPage}) class="active" #end>
+    			<a href="javascript:void(0);" onclick="gotoPage($!{currentPage});">$!{currentPage}</a>
+     		</li> 
+    	#end
+    #end
+    <li>
+      <a href="javascript:void(0);" onclick="gotoPage($!{model.nextPage});" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<input type="hidden" id="hasNextPage" name="hasNextPage" value=$!{model.hasNextPage} />
+<input type="hidden" id="hasPreviousPage" name="hasPreviousPage" value=$!{model.hasPreviousPage} />
+<script>	
+	var gotoPage = function(pageNo) {
+		$("#currentPage").val(pageNo);
+		$("#" + $("#formName").val()).submit();
+	};
+</script>

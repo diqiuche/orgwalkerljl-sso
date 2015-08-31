@@ -19,5 +19,9 @@
 			<groupId>org.walkerljl.commons</groupId>
 			<artifactId>orgwalkerljl-commons-service</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.walkerljl.commons</groupId>
+			<artifactId>orgwalkerljl-commons-mail</artifactId>
+		</dependency>
 	</dependencies>
 </project>

@@ -1,0 +1,13 @@
+<div class="container">
+  <form class="form-signin" method="post" action="$!{contextPath}/login?returnAddress=$!{returnAddress}">
+  	<input type="hidden" id="operate" name="operate" />
+    <h2 class="form-signin-heading">$!{appName}</h2>
+    <label><a href="javascript:void(0);" onclick="window.location.href='$!{contextPath}/register'">立即注册</a></label>
+    <p style="color:red;">$!{message}</p>
+    <label for="userId" class="sr-only">账号</label>
+    <input type="input" id="userId" name="userId" class="form-control" placeholder="账号" />
+    <label for="password" class="sr-only">密码</label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="密码" />
+    <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="signin();">登录</button>
+  </form>
+</div> <!-- /container -->

@@ -25,8 +25,10 @@ public class UserAuthenticationTicket implements Serializable {
 		UserAuthenticationTicket instance = HOLDER.get();
 		if (instance != null && instance.isExpired()) {
 			remove();
+			return null;
+		} else {
+			return instance;
 		}
-		return instance;
 	}
 	
 	public static void set(UserAuthenticationTicket ticket) {

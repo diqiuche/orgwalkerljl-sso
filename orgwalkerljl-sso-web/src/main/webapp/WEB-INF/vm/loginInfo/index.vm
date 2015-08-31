@@ -1,0 +1,24 @@
+#parse("common/index/head.vm") <!-- 通用Index头部-->
+<thead>
+<tr>
+	<th>账号</th>
+	<th>姓名</th>
+	<th>终端</th>
+	<th>IP</th>
+	<th>登录日期</th>
+	<th>登出日期</th>
+</tr>
+</thead>
+<tbody>
+#foreach($rowModel in $!{model.result})
+<tr>
+	<td>$!{rowModel.userId}</td>
+	<td>$!{rowModel.userName}</td>
+	<td>$!{rowModel.loginAgentName}</td>
+	<td>$!{rowModel.loginIp}</td>
+	<td>$dateUtils.dateFormatDateTime($!{rowModel.loginDate})</td>
+	<td>$dateUtils.dateFormatDateTime($!{rowModel.logoutDate})</td>
+</tr>
+#end
+</tbody>
+#parse("common/index/bottom.vm") <!-- 通用Index底部-->

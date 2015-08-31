@@ -1,0 +1,81 @@
+<form action="$!{contextPath}/register" method="post" id="registerForm">
+<input type="hidden" id="confirmEmail" name="confirmEmail" value="false"/>
+<div class="container-fluid">
+	<div class="row-fluid">
+    	<div class="col-lg-8 col-lg-offset-2">
+<form>
+	<label style="color:red;">$!{message.body}</label>
+	<div class="form-group">
+    <label for="accountNo">登录账号</label>
+    <input type="input" class="form-control" id="accountNo" name="accountNo" placeholder="登录账号" />
+  </div>
+  <div class="form-group">
+    <label for="accountName">登录名</label>
+    <input type="input" class="form-control" id="accountName" name="accountName" placeholder="登录名" />
+  </div>
+  <div class="form-group">
+    <label for="email">邮箱</label>
+    <input type="email" class="form-control" id="email" placeholder="邮箱" />
+  </div>
+  <div class="form-group">
+    <label for="password">密码</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="密码" />
+  </div>
+   <div class="form-group">
+    <label for="retryPassword">重复密码</label>
+    <input type="password" class="form-control" id="retryPassword" placeholder="重复密码" />
+  </div>
+  <button type="button" class="btn btn-default" onclick="register();">注册</button>
+  <button type="button" class="btn btn-default" onclick="window.location.href='$!{contextPath}/login'">返回登录</button>
+		</div>
+	</div>
+</div>
+</form>
+<script>
+	var register = function() {
+		if ($("#accountNo").val() == '') {
+			alert('登录账号不能为空');
+			$("#accountNo").focus();
+			return;
+		} else if ($("#accountNo").val().length > 64) {
+			alert('登录账号不能超过64个字符');
+			$("#accountNo").focus();
+			return;
+		} else if ($("#accountName").val() == '') {
+			alert('登录名不能为空');
+			$("#accountName").focus();
+			return;
+		} else if ($("#accountName").val().length > 64) {
+			alert('登录名不能超过64个字符');
+			$("#accountName").focus();
+			return;
+		} else if ($("#password").val() == '') {
+			alert('登录密码不能为空');
+			$("#password").focus();
+			return;
+		} else if ($("#password").val().length < 6 || $("#password").val().length > 32) {
+			alert('登录密码必须在6-32个字符之间');
+			$("#password").focus();
+			return;
+		} else if ($("#retryPassword").val() != $("#password").val()) {
+			alert('两次输入的密码不一致');
+			$("#retryPassword").focus();
+			return;
+		} else if ($("#email").val() == '') {
+			if (confirm("账号绑定邮箱将有助于找回账号和重置密码，请确认是否绑定邮箱？")) {
+				$("#email").focus();
+				return;			
+			} else {
+				$("#confirmEmail").val(true);
+				$("#registerForm").submit();
+			}
+		} else if ($("#email").val().length > 64) {
+			alert('邮箱不能超过64个字符');
+			$("#email").focus();
+			return;
+		} else {
+			$("#confirmEmail").val(true);
+			$("#registerForm").submit();
+		}
+	};
+</script>

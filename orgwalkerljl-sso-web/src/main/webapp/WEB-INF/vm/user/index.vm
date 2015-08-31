@@ -1,0 +1,32 @@
+#parse("common/index/head.vm") <!-- 通用Index头部-->
+<thead>
+<tr>
+	<th>登录账号</th>
+	<th>登录名</th>
+	<th>邮箱</th>
+	<th>手机</th>
+	<th>状态</th>
+	<th>登录日期</th>
+	<th>IP</th>
+	<th>终端</th>
+	<th>创建日期</th>
+	<th>最近修改日期</th>
+</tr>
+</thead>
+<tbody>
+#foreach($rowModel in $!{model.result})
+<tr>
+	<td>$!{rowModel.accountNo}</td>
+	<td>$!{rowModel.accountName}</td>
+	<td>$!{rowModel.email}</td>
+	<td>$!{rowModel.mobile}</td>
+	<td>$!{rowModel.statusName}</td>
+	<td>$dateUtils.dateFormatDateTime($!{rowModel.lastLoginDate})</td>
+	<td>$!{rowModel.lastLoginIp}</td>
+	<td>$!{rowModel.lastLoginAgent}</td>
+	<td>$dateUtils.dateFormatDateTime($!{rowModel.lastLoginDate})</td>
+	<td>$dateUtils.dateFormatDateTime($!{rowModel.lastModifyDate})</td>
+</tr>
+#end
+</tbody>
+#parse("common/index/bottom.vm") <!-- 通用Index底部-->
