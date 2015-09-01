@@ -10,5 +10,5 @@ import org.walkerljl.sso.domain.User;
  * @author lijunlin
  */
 public interface UserDao extends DefaultBaseDao<User, Long> {
-
+	
 }

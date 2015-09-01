@@ -1,0 +1,6 @@
+<form action="$!{indexAddress}" method="post" id="$!{formName}">
+#parse("common/pagination/param.vm")<!-- 公用分页参数-->
+<div class="container-fluid">
+	<div class="row-fluid" style="margin-top:20px;">
+    	<div class="col-lg-8 col-lg-offset-2">
+			<table class="table table-bordered table-hover table-condensed">

@@ -1,17 +1,24 @@
 package org.walkerljl.sso.service.impl;
 
+import java.util.Date;
+import java.util.Random;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.walkerljl.commons.Message;
 import org.walkerljl.commons.collection.ListUtils;
 import org.walkerljl.commons.dao.DefaultBaseDao;
-import org.walkerljl.commons.pojo.identity.LoginCommand;
+import org.walkerljl.commons.enumerate.Status;
 import org.walkerljl.commons.security.EncryptUtils;
 import org.walkerljl.commons.service.impl.DefaultBaseServiceImpl;
 import org.walkerljl.commons.util.StringUtils;
+import org.walkerljl.sso.dao.LoginInfoDao;
 import org.walkerljl.sso.dao.UserDao;
+import org.walkerljl.sso.domain.LoginInfo;
 import org.walkerljl.sso.domain.User;
-import org.walkerljl.sso.enumerate.LoginResult;
+import org.walkerljl.sso.pojo.LoginCommand;
 import org.walkerljl.sso.service.UserService;
 
 /**
@@ -24,45 +31,176 @@ import org.walkerljl.sso.service.UserService;
 public class UserServiceImpl extends DefaultBaseServiceImpl<User, Long> implements UserService {
 
 	@Resource private UserDao userDao;
+	@Resource private LoginInfoDao loginInfoDao;
 	
 	@Override
 	public DefaultBaseDao<User, Long> getDao() {
 		return userDao;
 	}
-
+	
 	@Override
-	public LoginResult verify(LoginCommand command) {
+	public User getUserByAccountNo(String accountNo) {
+		User condition = new User();
+		condition.setAccountNo(accountNo);	
+		return ListUtils.first(userDao.selectList(condition));
+	}
+
+	@Override @Transactional(rollbackFor = Exception.class)
+	public Message login(LoginCommand command) {
 		if (command == null) {
 			LOG.warn("Command is null");
-			return LoginResult.FAILURE;
+			return Message.failure();
 		}
 		
 		if (StringUtils.isBlank(command.getUserId())) {
 			LOG.warn("User id is null or blank");
-			return LoginResult.FAILURE;
+			return Message.failure();
 		}
 		
 		if (StringUtils.isBlank(command.getPassword())) {
 			LOG.warn("User password is null or blank");
-			return LoginResult.FAILURE;
+			return Message.failure();
 		}
 		
-		User condition = new User();
-		condition.setAccountNo(command.getUserId());	
-		User dbUser = ListUtils.first(userDao.selectList(condition));
-		if (dbUser == null) {
+		User dbUser = getUserByAccountNo(command.getUserId());
+		if (dbUser == null || !dbUser.isEnabled()) {
 			LOG.warn(String.format("Invalid user information,condition:{accountNo:%s}", command.getUserId()));
-			return LoginResult.FAILURE;
+			return Message.failure();
 		}
 		
-		String expectedPassword = EncryptUtils.encryptByMD5(EncryptUtils.encryptByMD5(EncryptUtils.encryptByMD5(command.getPassword() + dbUser.getSalt())));
+		//随机盐+三次MD5加密
+		String expectedPassword = getEncryptedPassword(command.getPassword(), dbUser.getSalt() + "");
 		if (expectedPassword.equals(dbUser.getPassword())) {
-			return LoginResult.SUCCESS;
+			command.setUserName(dbUser.getAccountName());
+			//更新最新登录状态
+			updateLastLoginStatus(dbUser.getId(), command);
+			//记录登录信息
+			addLoginInfo(command);
+			return Message.success();
 		}
-		return LoginResult.FAILURE;
+		return Message.failure();
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(EncryptUtils.encryptByMD5(EncryptUtils.encryptByMD5(EncryptUtils.encryptByMD5("" + "99887745"))));
+	/**
+	 * 获取加密的密码
+	 * @param inputPassword
+	 * @param salt
+	 * @return
+	 */
+	private String getEncryptedPassword(String inputPassword, String salt) {
+		return EncryptUtils.encryptByMD5(
+				EncryptUtils.encryptByMD5(
+				EncryptUtils.encryptByMD5(inputPassword + salt)));
+	}
+	
+	/**
+	 * 更新最新登录状态
+	 * @param key
+	 * @param command
+	 */
+	private void updateLastLoginStatus(Long key, LoginCommand command) {
+		User userStatus = new User();
+		userStatus.setId(key);
+		userStatus.setLastLoginDate(new Date());
+		userStatus.setLastLoginIp(command.getLoginIp());
+		userStatus.setLastLoginAgent(command.getLoginAgent().getValue());
+		userDao.updateByKey(userStatus);
+	}
+	
+	/**
+	 * 添加登录信息
+	 * @param command
+	 */
+	private void addLoginInfo(LoginCommand command) {
+		LoginInfo loginInfo = new LoginInfo();
+		loginInfo.setUserId(command.getUserId());
+		loginInfo.setUserName(command.getUserName());
+		loginInfo.setLoginIp(command.getLoginIp());
+		loginInfo.setLoginDate(new Date());
+		loginInfo.setLogoutDate(loginInfo.getLoginDate());
+		loginInfo.setLoginAgent(command.getLoginAgent().getValue());
+		loginInfoDao.insert(loginInfo);
+	}
+
+	@Override
+	public boolean accountNoIsExists(String accountNo) {
+		return getUserByAccountNo(accountNo) != null;
+	}
+	
+	@Override
+	public boolean accountNameIsExists(String accountName) {
+		User condition = new User();
+		condition.setAccountName(accountName);
+		return ListUtils.size(userDao.selectList(condition)) > 0;
+	}
+
+	@Override
+	public boolean emailIsExists(String email) {
+		User condition = new User();
+		condition.setEmail(email);
+		return ListUtils.size(userDao.selectList(condition)) > 0;
+	}
+
+	@Override
+	public boolean mobileIsExists(String mobile) {
+		User condition = new User();
+		condition.setMobile(mobile);
+		return ListUtils.size(userDao.selectList(condition)) > 0;
+	}
+
+	@Override
+	public Message register(User user) {
+		if (StringUtils.isEmpty(user.getAccountNo())) {
+			return Message.failure("登录账号不能为空");
+		} else if (StringUtils.isEmpty(user.getAccountName())) {
+			return Message.failure("登录名不能为空");
+		} else if (StringUtils.isEmpty(user.getPassword())) {
+			return Message.failure("登录密码不能为空");
+		} else if (accountNoIsExists(user.getAccountNo())) {
+			return Message.failure("登录账号已存在");
+		} else if (accountNameIsExists(user.getAccountName())) {
+			return Message.failure("登录名已存在");
+		} if (StringUtils.isNotEmpty(user.getEmail()) && emailIsExists(user.getEmail())) {
+			return Message.failure("邮箱已被账号绑定");
+		} if (StringUtils.isNotEmpty(user.getMobile()) && mobileIsExists(user.getMobile())) {
+			return Message.failure("手机已被账号绑定");
+		}
+		//生成随机盐
+		int max = 99999999;
+	    int min = 10000000;
+	    Random random = new Random();
+	    int salt = random.nextInt(max) % (max - min + 1) + min;
+	    user.setSalt(salt + "");
+	    
+	    //设置密码
+	  	String encryptedPassword = getEncryptedPassword(user.getPassword(), user.getSalt());
+	  	user.setPassword(encryptedPassword);
+	    
+		return Message.create(userDao.insert(user) > 0);
+	}
+	
+	@Override
+	public Message confirmRegister(String accountNo) {
+		User user = getUserByAccountNo(accountNo);
+		if (user == null) {
+			return Message.failure("用户不存在");
+		} else if (!user.isDisabled()) {
+			return Message.failure("用户已经确认，不能重新确认");
+		}
+		user.setStatusType(Status.ENABLED);
+		user.setLastModifyDate(new Date());
+		return Message.create(userDao.updateByKey(user) > 0);
+	}
+
+	@Override
+	public Message updatePassword(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Message resetPassword(User user) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

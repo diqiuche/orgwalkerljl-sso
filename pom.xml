@@ -37,10 +37,10 @@
 				
 				<!-- sso -->
 				<sso.auth.cookie.domain>.walkerljl.org</sso.auth.cookie.domain>
-				<sso.auth.cookie.name>dev.sso.walkerljl.org</sso.auth.cookie.name>
+				<sso.auth.cookie.name>local.sso.walkerljl.org</sso.auth.cookie.name>
 				<sso.auth.cookie.key>e4a52c13-9ec9-4353-826e-175660679c99</sso.auth.cookie.key>
-				<sso.auth.address>//dev.walkerljl.org/sso/signin</sso.auth.address>
-				<sso.return.address>//dev.walkerljl.org/sso</sso.return.address>
+				<sso.auth.address>//local.walkerljl.org:8080/sso/login</sso.auth.address>
+				<sso.return.address>//local.walkerljl.org:8080/sso</sso.return.address>
 			</properties>
 		</profile>
 		
@@ -67,7 +67,7 @@
 				<sso.auth.cookie.domain>.walkerljl.org</sso.auth.cookie.domain>
 				<sso.auth.cookie.name>dev.sso.walkerljl.org</sso.auth.cookie.name>
 				<sso.auth.cookie.key>e4a52c13-9ec9-4353-826e-175660679c99</sso.auth.cookie.key>
-				<sso.auth.address>//dev.walkerljl.org/sso/signin</sso.auth.address>
+				<sso.auth.address>//dev.walkerljl.org/sso/login</sso.auth.address>
 				<sso.return.address>//dev.walkerljl.org/sso</sso.return.address>
 			</properties>
 		</profile>
@@ -95,7 +95,7 @@
 				<sso.auth.cookie.domain>.walkerljl.oicp.net</sso.auth.cookie.domain>
 				<sso.auth.cookie.name>sso.walkerljl.oicp.net</sso.auth.cookie.name>
 				<sso.auth.cookie.key>e4a52c13-9ec9-4353-826e-175660679c99</sso.auth.cookie.key>
-				<sso.auth.address>//walkerljl.oicp.net/sso/signin</sso.auth.address>
+				<sso.auth.address>//walkerljl.oicp.net/sso/login</sso.auth.address>
 				<sso.return.address>//walkerljl.oicp.net/sso</sso.return.address>
 			</properties>
 		</profile>
@@ -167,6 +167,11 @@
 				<artifactId>orgwalkerljl-commons-mvc</artifactId>
 				<version>${orgwalkerljl.commons.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.walkerljl.commons</groupId>
+				<artifactId>orgwalkerljl-commons-mail</artifactId>
+				<version>${orgwalkerljl.commons.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>javax.servlet</groupId>
@@ -175,11 +180,6 @@
 				<scope>provided</scope>
 			</dependency>
 
-			<dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjweaver</artifactId>
-				<version>1.7.2</version>
-			</dependency>
 			<dependency>
 				<groupId>com.jolbox</groupId>
 				<artifactId>bonecp</artifactId>
