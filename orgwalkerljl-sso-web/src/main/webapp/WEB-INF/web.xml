@@ -32,6 +32,32 @@
 		<servlet-name>dispatcherServlet</servlet-name>
 	</filter-mapping>
 	
+	<!-- Remoting service -->
+	<servlet>
+		<servlet-name>remotingServiceServlet</servlet-name>
+		<servlet-class>org.walkerljl.sso.remoting.SpringHessianRemotingServer</servlet-class>
+		<init-param>
+			<param-name>remotingServicePackageName</param-name>
+			<param-value>org.walkerljl.sso.sdk</param-value>
+		</init-param>
+		<init-param>
+			<param-name>integrateOtherIocContainer</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>remotingServiceAddressPrefix</param-name>
+			<param-value>/openservice</param-value>
+		</init-param>
+		<init-param>
+			<param-name>remotingServiceImplPackageName</param-name>
+			<param-value>org.walkerljl.sso.service.sdk.impl</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>remotingServiceServlet</servlet-name>
+		<url-pattern>/openservice/*</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>/</welcome-file>
 	</welcome-file-list>

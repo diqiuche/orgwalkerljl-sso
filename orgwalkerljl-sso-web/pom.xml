@@ -49,15 +49,19 @@
 			<artifactId>orgwalkerljl-sso-sdk</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.walkerljl.commons</groupId>
+			<artifactId>orgwalkerljl-commons-mvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.walkerljl.remoting</groupId>
+			<artifactId>orgwalkerljl-remoting-provider-hessian</artifactId>
+		</dependency>
 		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.walkerljl.commons</groupId>
-			<artifactId>orgwalkerljl-commons-mvc</artifactId>
 		</dependency>
 	</dependencies>
 </project>

@@ -105,6 +105,7 @@
 		<jdk.version>1.8</jdk.version>
 		<spring.version>3.1.1.RELEASE</spring.version>
 		<orgwalkerljl.commons.version>0.0.1-SNAPSHOT</orgwalkerljl.commons.version>
+		<orgwalkerljl.remoting.version>0.0.1-SNAPSHOT</orgwalkerljl.remoting.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -119,16 +120,6 @@
 						<source>${jdk.version}</source>
 						<target>${jdk.version}</target>
 					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-war-plugin</artifactId>
-					<version>2.2</version>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>cobertura-maven-plugin</artifactId>
-					<version>2.5.2</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -172,7 +163,18 @@
 				<artifactId>orgwalkerljl-commons-mail</artifactId>
 				<version>${orgwalkerljl.commons.version}</version>
 			</dependency>
-
+			
+			<dependency>
+				<groupId>org.walkerljl.remoting</groupId>
+				<artifactId>orgwalkerljl-remoting-sdk</artifactId>
+				<version>${orgwalkerljl.remoting.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.walkerljl.remoting</groupId>
+				<artifactId>orgwalkerljl-remoting-provider-hessian</artifactId>
+				<version>${orgwalkerljl.remoting.version}</version>
+			</dependency>
+			
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>servlet-api</artifactId>

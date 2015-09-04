@@ -1,22 +1,20 @@
 /*
- * Copyright (c) 2010-2015 lijunlin All Rights Reserved.
+ * Copyright (c) 2010-2015 www.walkerljl.org All Rights Reserved.
  * The software source code all copyright belongs to the author, 
  * without permission shall not be any reproduction and transmission.
  */
-package org.walkerljl.sso.domain;
+package org.walkerljl.sso.sdk.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import org.walkerljl.commons.domain.BaseDomain;
-import org.walkerljl.sso.enumerate.AgentType;
-
 /**
- * 登录信息
- * 
+ * 登录信息 
+ *
  * @author lijunlin<walkerljl@qq.com>
  */
-public class LoginInfo extends BaseDomain {
-	
+public class LoginInfoDto implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	/** 账号Id*/
@@ -32,7 +30,7 @@ public class LoginInfo extends BaseDomain {
 	/** 登录终端*/
 	private Integer loginAgent;
 	
-	public LoginInfo() {}
+	public LoginInfoDto() {}
 	
 	//自定义方法
 	/**
@@ -51,7 +49,7 @@ public class LoginInfo extends BaseDomain {
 		AgentType agentType = getLoginAgentType();
 		return agentType == null ? "" : agentType.getName();
 	}
-
+	
 	/**
 	 * 获取登录用户Id
 	 * @return
@@ -146,5 +144,13 @@ public class LoginInfo extends BaseDomain {
 	 */
 	public void setLoginAgent(Integer loginAgent) {
 		this.loginAgent = loginAgent;
+	}
+
+	@Override
+	public String toString() {
+		return "LoginInfoDto [userId=" + userId + ", userName=" + userName
+				+ ", loginIp=" + loginIp + ", loginDate=" + loginDate
+				+ ", logoutDate=" + logoutDate + ", loginAgent=" + loginAgent
+				+ "]";
 	}
 }

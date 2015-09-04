@@ -22,6 +22,8 @@
 	<!-- 配置AOP切面 -->
 	<aop:aspectj-autoproxy/>
     
+    <bean class="org.walkerljl.commons.service.ApplicationContextUtils" />
+    
     <!-- 配置事务管理 -->
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
