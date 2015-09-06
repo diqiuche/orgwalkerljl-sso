@@ -43,6 +43,20 @@ public class IndexController extends DefaultIndexController {
 	
 	@Resource private UserService userService;
 	
+	/**
+	 * 覆盖父类的login方法和URL
+	 */
+	@RequestMapping(value = "/unvalid")
+	public void login() {}
+	
+	/**
+	 * 登录
+	 * @param command
+	 * @param operate
+	 * @param returnAddress
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/login")
 	public ModelAndView login(LoginCommand command, String operate, String returnAddress) throws IOException {
 		ViewResult viewResult = new ViewResult();
@@ -73,12 +87,20 @@ public class IndexController extends DefaultIndexController {
 		return toViewResult(getTemplate("", "login"), viewResult);
 	}
 	
+	/**
+	 * 注销
+	 */
 	@RequestMapping(value = "/logout")
 	public void logout() {
 		new UserAuthenticationTicketFactory(ssoAuthCookieDomain, ssoAuthCookieName, ssoAuthCookieKey).deleteTicket(getResponse());
 		sendRedirect(getRequest().getContextPath());
 	}
 	
+	/**
+	 * 注册
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping(value = "/register")
 	public ModelAndView register(User user) {
 		ViewResult viewResult = new ViewResult();
