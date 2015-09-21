@@ -2,7 +2,7 @@
 <input type="hidden" id="confirmEmail" name="confirmEmail" value="false"/>
 <div class="container-fluid">
 	<div class="row-fluid">
-    	<div class="col-lg-8 col-lg-offset-2">
+    	<div class="col-lg-4 col-lg-offset-4">
 <form>
 	<label style="color:red;">$!{message.body}</label>
 	<div class="form-group">
