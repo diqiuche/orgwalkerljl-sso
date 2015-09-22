@@ -10,6 +10,10 @@
 	<packaging>war</packaging>
 
 	<build>
+		<filters>
+			<filter>src/main/resources/conf/${pfile}</filter>
+		</filters>
+		<finalName>sso-web</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -37,6 +41,33 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<profiles>
+		<profile>
+			<id>development</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<pfile>sso-development.properties</pfile>
+			</properties>
+		</profile>
+        <profile>
+            <id>test</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+           		 <pfile>sso-test.properties</pfile>
+            </properties>
+        </profile>
+		<profile>
+			<id>production</id>
+			<properties>
+				<pfile>sso-production.properties</pfile>
+			</properties>
+		</profile>
+	</profiles>
 
 	<dependencies>
 		<dependency>
