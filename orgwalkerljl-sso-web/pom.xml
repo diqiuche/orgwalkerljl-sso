@@ -11,7 +11,7 @@
 
 	<build>
 		<filters>
-			<filter>src/main/resources/conf/${pfile}</filter>
+			<filter>src/main/resources/profiles/${pfile}</filter>
 		</filters>
 		<finalName>sso-web</finalName>
 		<resources>
@@ -44,19 +44,22 @@
 	
 	<profiles>
 		<profile>
-			<id>development</id>
+			<id>local</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
+			<properties>
+				<pfile>sso-local.properties</pfile>
+			</properties>
+		</profile>
+		<profile>
+			<id>development</id>
 			<properties>
 				<pfile>sso-development.properties</pfile>
 			</properties>
 		</profile>
         <profile>
             <id>test</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
             <properties>
            		 <pfile>sso-test.properties</pfile>
             </properties>

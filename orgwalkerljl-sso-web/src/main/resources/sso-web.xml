@@ -11,9 +11,9 @@
 	<property name="ignoreUnresolvablePlaceholders" value="true" />
 		<property name="locations">
 			<list>
-				<value>classpath:important.properties</value>
+				<value>classpath:conf/important.properties</value>
+				<value>classpath:conf/sso.properties</value>
 				<value>classpath:db.properties</value>
-				<value>classpath:sso.properties</value>
 				<value>classpath:sso-auth.properties</value>
 			</list>
 		</property>
