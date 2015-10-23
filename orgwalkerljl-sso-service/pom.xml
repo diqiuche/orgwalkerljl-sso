@@ -19,6 +19,10 @@
 			<artifactId>orgwalkerljl-sso-sdk</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.walkerljl.remoting</groupId>
+			<artifactId>orgwalkerljl-remoting-sdk</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.walkerljl.commons</groupId>

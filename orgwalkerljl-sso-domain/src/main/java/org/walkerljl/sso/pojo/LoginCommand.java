@@ -7,7 +7,7 @@ package org.walkerljl.sso.pojo;
 
 import java.io.Serializable;
 
-import org.walkerljl.sso.enumerate.AgentType;
+import org.walkerljl.sso.enumeration.AgentType;
 
 /**
  * 登录命令

@@ -33,8 +33,8 @@ public class LoginInfoSdkImpl implements LoginInfoSdk {
 	@Resource private LoginInfoDao loginInfoDao;
 	
 	@Override
-	public RemotingResponse getLoginInfos(LoginInfoRequest request) {
-		RemotingResponse response = new RemotingResponse();
+	public RemotingResponse<List<LoginInfoDto>> getLoginInfos(LoginInfoRequest request) {
+		RemotingResponse<List<LoginInfoDto>> response = new RemotingResponse<List<LoginInfoDto>>();
 		try {
 			LoginInfo queryObject = convertRequest(request);
 			if (request.getPageNo() <= 1) {

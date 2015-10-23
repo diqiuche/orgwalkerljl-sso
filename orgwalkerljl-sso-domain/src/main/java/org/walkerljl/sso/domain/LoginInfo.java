@@ -8,7 +8,7 @@ package org.walkerljl.sso.domain;
 import java.util.Date;
 
 import org.walkerljl.commons.domain.BaseDomain;
-import org.walkerljl.sso.enumerate.AgentType;
+import org.walkerljl.sso.enumeration.AgentType;
 
 /**
  * 登录信息

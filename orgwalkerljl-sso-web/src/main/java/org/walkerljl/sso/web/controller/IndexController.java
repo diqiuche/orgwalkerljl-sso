@@ -20,7 +20,7 @@ import org.walkerljl.commons.domain.ViewResult;
 import org.walkerljl.commons.mvc.DefaultIndexController;
 import org.walkerljl.commons.util.StringUtils;
 import org.walkerljl.sso.domain.User;
-import org.walkerljl.sso.enumerate.AgentType;
+import org.walkerljl.sso.enumeration.AgentType;
 import org.walkerljl.sso.pojo.LoginCommand;
 import org.walkerljl.sso.sdk.UserAuthenticationTicketFactory;
 import org.walkerljl.sso.service.UserService;

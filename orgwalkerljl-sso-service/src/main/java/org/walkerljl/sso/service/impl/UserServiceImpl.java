@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.walkerljl.commons.Message;
 import org.walkerljl.commons.collection.ListUtils;
 import org.walkerljl.commons.dao.DefaultBaseDao;
-import org.walkerljl.commons.enumerate.Status;
+import org.walkerljl.commons.enumeration.Status;
 import org.walkerljl.commons.security.EncryptUtils;
 import org.walkerljl.commons.service.impl.DefaultBaseServiceImpl;
 import org.walkerljl.commons.util.StringUtils;

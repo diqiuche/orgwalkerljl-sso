@@ -5,8 +5,11 @@
  */
 package org.walkerljl.sso.sdk;
 
+import java.util.List;
+
 import org.walkerljl.remoting.sdk.annotation.RemotingService;
 import org.walkerljl.remoting.sdk.response.RemotingResponse;
+import org.walkerljl.sso.sdk.dto.LoginInfoDto;
 import org.walkerljl.sso.sdk.request.LoginInfoRequest;
 
 /**
@@ -22,5 +25,5 @@ public interface LoginInfoSdk {
 	 * @param request
 	 * @return
 	 */
-	RemotingResponse getLoginInfos(LoginInfoRequest request);
+	RemotingResponse<List<LoginInfoDto>> getLoginInfos(LoginInfoRequest request);
 }

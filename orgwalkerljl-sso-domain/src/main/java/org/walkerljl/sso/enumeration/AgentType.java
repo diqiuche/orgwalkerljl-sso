@@ -3,7 +3,7 @@
  * The software source code all copyright belongs to the author, 
  * without permission shall not be any reproduction and transmission.
  */
-package org.walkerljl.sso.enumerate;
+package org.walkerljl.sso.enumeration;
 
 import org.walkerljl.commons.util.IntegerUtils;
 
