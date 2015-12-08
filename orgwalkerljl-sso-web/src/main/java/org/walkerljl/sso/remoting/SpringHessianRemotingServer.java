@@ -5,9 +5,9 @@
  */
 package org.walkerljl.sso.remoting;
 
+import org.walkerljl.commons.ClassScannerUtils;
 import org.walkerljl.commons.collection.ListUtils;
 import org.walkerljl.commons.service.ApplicationContextUtils;
-import org.walkerljl.jarvis.core.ClassScannerUtils;
 import org.walkrljl.remoting.provider.hessian.server.HessianRemotingServer;
 
 /**
