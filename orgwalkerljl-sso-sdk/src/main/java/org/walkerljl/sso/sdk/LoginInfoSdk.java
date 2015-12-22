@@ -1,21 +1,16 @@
-/*
- * Copyright (c) 2010-2015 www.walkerljl.org All Rights Reserved.
- * The software source code all copyright belongs to the author, 
- * without permission shall not be any reproduction and transmission.
- */
 package org.walkerljl.sso.sdk;
 
 import java.util.List;
 
-import org.walkerljl.remoting.sdk.annotation.RemotingService;
-import org.walkerljl.remoting.sdk.response.RemotingResponse;
+import org.walkerljl.remoting.api.annotation.RemotingService;
+import org.walkerljl.remoting.api.response.RemotingResponse;
 import org.walkerljl.sso.sdk.dto.LoginInfoDto;
 import org.walkerljl.sso.sdk.request.LoginInfoRequest;
 
 /**
  * 登录信息业务接口
  *
- * @author lijunlin<walkerljl@qq.com>
+ * @author lijunlin
  */
 @RemotingService(address = "/loginInfoSdk")
 public interface LoginInfoSdk {

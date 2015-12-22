@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2010-2015 www.walkerljl.org All Rights Reserved.
- * The software source code all copyright belongs to the author, 
- * without permission shall not be any reproduction and transmission.
- */
 package org.walkerljl.sso.web.controller;
 
 import java.io.IOException;
@@ -16,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.walkerljl.commons.Message;
-import org.walkerljl.commons.domain.ViewResult;
-import org.walkerljl.commons.mvc.DefaultIndexController;
 import org.walkerljl.commons.util.StringUtils;
+import org.walkerljl.smart.domain.ViewResult;
+import org.walkerljl.smart.mvc.DefaultIndexController;
 import org.walkerljl.sso.domain.User;
-import org.walkerljl.sso.enumeration.AgentType;
+import org.walkerljl.sso.enums.AgentType;
 import org.walkerljl.sso.pojo.LoginCommand;
 import org.walkerljl.sso.sdk.UserAuthenticationTicketFactory;
 import org.walkerljl.sso.service.UserService;
@@ -28,7 +23,7 @@ import org.walkerljl.sso.service.UserService;
 /**
  * IndexController 
  *
- * @author lijunlin<walkerljl@qq.com>
+ * @author lijunlin
  */
 @Controller
 @RequestMapping(value = "", method = {RequestMethod.POST, RequestMethod.GET})
@@ -106,11 +101,9 @@ public class IndexController extends DefaultIndexController {
 		ViewResult viewResult = new ViewResult();
 		if (user.getAccountNo() != null) {
 			initBaseDomainWhenCreate(user);
-			user.setCreateUserId(user.getAccountNo());
-			user.setCreateUserName(user.getAccountName());
-			user.setLastModifyUserId(user.getCreateUserId());
-			user.setLastModifyUserName(user.getCreateUserName());
-			user.setLastLoginDate(user.getCreateDate());
+			user.setCreator(user.getAccountNo());
+			user.setModifier(user.getCreator());
+			user.setLastLoginDate(user.getCreatedTime());
 			user.setLastLoginIp(getIpAddr(getRequest()));
 			user.setLastLoginAgent(AgentType.PC.getValue());
 			if (user.isConfirmEmail()) {//验证邮箱

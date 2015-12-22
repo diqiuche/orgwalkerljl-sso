@@ -11,9 +11,9 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.walkerljl.remoting</groupId>
-			<artifactId>orgwalkerljl-remoting-sdk</artifactId>
+			<artifactId>orgwalkerljl-remoting-api</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>

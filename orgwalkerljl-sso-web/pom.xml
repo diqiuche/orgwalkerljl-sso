@@ -78,15 +78,10 @@
 			<artifactId>orgwalkerljl-sso-service</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.walkerljl.sso</groupId>
-			<artifactId>orgwalkerljl-sso-sdk</artifactId>
-			<version>${project.parent.version}</version>
-		</dependency>
 
 		<dependency>
-			<groupId>org.walkerljl.commons</groupId>
-			<artifactId>orgwalkerljl-commons-mvc</artifactId>
+			<groupId>org.walkerljl.smart</groupId>
+			<artifactId>orgwalkerljl-smart-mvc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.walkerljl.remoting</groupId>

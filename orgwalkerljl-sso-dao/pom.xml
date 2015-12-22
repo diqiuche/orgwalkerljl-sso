@@ -21,10 +21,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.walkerljl.commons</groupId>
-			<artifactId>orgwalkerljl-commons-dao</artifactId>
+			<groupId>org.walkerljl.smart</groupId>
+			<artifactId>orgwalkerljl-smart-dao</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>com.jolbox</groupId>
 			<artifactId>bonecp</artifactId>

@@ -19,8 +19,9 @@
 	<properties>
 		<jdk.version>1.8</jdk.version>
 		<spring.version>3.1.1.RELEASE</spring.version>
-		<orgwalkerljl.commons.version>1.0.1-SNAPSHOT</orgwalkerljl.commons.version>
+		<orgwalkerljl.commons.version>1.0.2-SNAPSHOT</orgwalkerljl.commons.version>
 		<orgwalkerljl.remoting.version>0.0.1-SNAPSHOT</orgwalkerljl.remoting.version>
+		<orgwalkerljl.smart.version>1.0.0-SNAPSHOT</orgwalkerljl.smart.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -44,44 +45,29 @@
 		<dependencies>
 			<!-- orgwalkerljl commons -->
 			<dependency>
-				<groupId>org.walkerljl.commons</groupId>
-				<artifactId>orgwalkerljl-commons-core</artifactId>
-				<version>${orgwalkerljl.commons.version}</version>
+				<groupId>org.walkerljl.smart</groupId>
+				<artifactId>orgwalkerljl-smart-domain</artifactId>
+				<version>${orgwalkerljl.smart.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.walkerljl.commons</groupId>
-				<artifactId>orgwalkerljl-commons-log</artifactId>
-				<version>${orgwalkerljl.commons.version}</version>
+				<groupId>org.walkerljl.smart</groupId>
+				<artifactId>orgwalkerljl-smart-dao</artifactId>
+				<version>${orgwalkerljl.smart.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.walkerljl.commons</groupId>
-				<artifactId>orgwalkerljl-commons-domain</artifactId>
-				<version>${orgwalkerljl.commons.version}</version>
+				<groupId>org.walkerljl.smart</groupId>
+				<artifactId>orgwalkerljl-smart-service</artifactId>
+				<version>${orgwalkerljl.smart.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.walkerljl.commons</groupId>
-				<artifactId>orgwalkerljl-commons-dao</artifactId>
-				<version>${orgwalkerljl.commons.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.walkerljl.commons</groupId>
-				<artifactId>orgwalkerljl-commons-service</artifactId>
-				<version>${orgwalkerljl.commons.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.walkerljl.commons</groupId>
-				<artifactId>orgwalkerljl-commons-mvc</artifactId>
-				<version>${orgwalkerljl.commons.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.walkerljl.commons</groupId>
-				<artifactId>orgwalkerljl-commons-mail</artifactId>
-				<version>${orgwalkerljl.commons.version}</version>
+				<groupId>org.walkerljl.smart</groupId>
+				<artifactId>orgwalkerljl-smart-mvc</artifactId>
+				<version>${orgwalkerljl.smart.version}</version>
 			</dependency>
 			
 			<dependency>
 				<groupId>org.walkerljl.remoting</groupId>
-				<artifactId>orgwalkerljl-remoting-sdk</artifactId>
+				<artifactId>orgwalkerljl-remoting-api</artifactId>
 				<version>${orgwalkerljl.remoting.version}</version>
 			</dependency>
 			<dependency>

@@ -6,17 +6,17 @@
 package org.walkerljl.sso.dao.impl;
 
 import org.springframework.stereotype.Repository;
-import org.walkerljl.commons.dao.impl.DefaultBaseDaoImpl;
+import org.walkerljl.smart.dao.impl.BaseDaoImpl;
 import org.walkerljl.sso.dao.LoginInfoDao;
 import org.walkerljl.sso.domain.LoginInfo;
 
 /**
  * LoginInfoDaoImpl 
  *
- * @author lijunlin<walkerljl@qq.com>
+ * @author lijunlin
  */
 @Repository("loginInfoDao")
-public class LoginInfoDaoImpl extends DefaultBaseDaoImpl<LoginInfo, Long> implements LoginInfoDao {
+public class LoginInfoDaoImpl extends BaseDaoImpl<LoginInfo, Long> implements LoginInfoDao {
 
 	public LoginInfoDaoImpl() {
 		super.baseNameSpace = "org.walkerljl.sso.dao.LoginInfoDao";

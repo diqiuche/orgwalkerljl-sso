@@ -1,4 +1,4 @@
-package org.walkerljl.sso.enumeration;
+package org.walkerljl.sso.enums;
 /**
  *
  * LoginResult

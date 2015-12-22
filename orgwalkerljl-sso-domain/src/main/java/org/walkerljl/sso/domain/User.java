@@ -2,8 +2,8 @@ package org.walkerljl.sso.domain;
 
 import java.util.Date;
 
-import org.walkerljl.commons.domain.BaseDomain;
-import org.walkerljl.sso.enumeration.AgentType;
+import org.walkerljl.smart.domain.BaseDomain;
+import org.walkerljl.sso.enums.AgentType;
 
 /**
  *

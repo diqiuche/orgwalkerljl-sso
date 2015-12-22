@@ -8,12 +8,11 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.walkerljl.commons.Message;
-import org.walkerljl.commons.collection.ListUtils;
-import org.walkerljl.commons.dao.DefaultBaseDao;
-import org.walkerljl.commons.enumeration.Status;
 import org.walkerljl.commons.security.EncryptUtils;
-import org.walkerljl.commons.service.impl.DefaultBaseServiceImpl;
 import org.walkerljl.commons.util.StringUtils;
+import org.walkerljl.smart.dao.BaseDao;
+import org.walkerljl.smart.enums.Status;
+import org.walkerljl.smart.service.impl.BaseServiceImpl;
 import org.walkerljl.sso.dao.LoginInfoDao;
 import org.walkerljl.sso.dao.UserDao;
 import org.walkerljl.sso.domain.LoginInfo;
@@ -28,13 +27,13 @@ import org.walkerljl.sso.service.UserService;
  * @author lijunlin
  */
 @Service("userService")
-public class UserServiceImpl extends DefaultBaseServiceImpl<User, Long> implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<User, Long> implements UserService {
 
 	@Resource private UserDao userDao;
 	@Resource private LoginInfoDao loginInfoDao;
 	
 	@Override
-	public DefaultBaseDao<User, Long> getDao() {
+	public BaseDao<User, Long> getDao() {
 		return userDao;
 	}
 	
@@ -42,29 +41,29 @@ public class UserServiceImpl extends DefaultBaseServiceImpl<User, Long> implemen
 	public User getUserByAccountNo(String accountNo) {
 		User condition = new User();
 		condition.setAccountNo(accountNo);	
-		return ListUtils.first(userDao.selectList(condition));
+		return userDao.selectOne(condition);
 	}
 
 	@Override @Transactional(rollbackFor = Exception.class)
 	public Message login(LoginCommand command) {
 		if (command == null) {
-			LOG.warn("Command is null");
+			LOGGER.warn("Command is null");
 			return Message.failure();
 		}
 		
 		if (StringUtils.isBlank(command.getUserId())) {
-			LOG.warn("User id is null or blank");
+			LOGGER.warn("User id is null or blank");
 			return Message.failure();
 		}
 		
 		if (StringUtils.isBlank(command.getPassword())) {
-			LOG.warn("User password is null or blank");
+			LOGGER.warn("User password is null or blank");
 			return Message.failure();
 		}
 		
 		User dbUser = getUserByAccountNo(command.getUserId());
 		if (dbUser == null || !dbUser.isEnabled()) {
-			LOG.warn(String.format("Invalid user information,condition:{accountNo:%s}", command.getUserId()));
+			LOGGER.warn(String.format("Invalid user information,condition:{accountNo:%s}", command.getUserId()));
 			return Message.failure();
 		}
 		
@@ -100,11 +99,10 @@ public class UserServiceImpl extends DefaultBaseServiceImpl<User, Long> implemen
 	 */
 	private void updateLastLoginStatus(Long key, LoginCommand command) {
 		User userStatus = new User();
-		userStatus.setId(key);
 		userStatus.setLastLoginDate(new Date());
 		userStatus.setLastLoginIp(command.getLoginIp());
 		userStatus.setLastLoginAgent(command.getLoginAgent().getValue());
-		userDao.updateByKey(userStatus);
+		userDao.updateByKey(userStatus, key);
 	}
 	
 	/**
@@ -131,21 +129,21 @@ public class UserServiceImpl extends DefaultBaseServiceImpl<User, Long> implemen
 	public boolean accountNameIsExists(String accountName) {
 		User condition = new User();
 		condition.setAccountName(accountName);
-		return ListUtils.size(userDao.selectList(condition)) > 0;
+		return userDao.selectOne(condition) != null;
 	}
 
 	@Override
 	public boolean emailIsExists(String email) {
 		User condition = new User();
 		condition.setEmail(email);
-		return ListUtils.size(userDao.selectList(condition)) > 0;
+		return userDao.selectOne(condition) != null;
 	}
 
 	@Override
 	public boolean mobileIsExists(String mobile) {
 		User condition = new User();
 		condition.setMobile(mobile);
-		return ListUtils.size(userDao.selectList(condition)) > 0;
+		return userDao.selectOne(condition) != null;
 	}
 
 	@Override
@@ -187,9 +185,9 @@ public class UserServiceImpl extends DefaultBaseServiceImpl<User, Long> implemen
 		} else if (!user.isDisabled()) {
 			return Message.failure("用户已经确认，不能重新确认");
 		}
-		user.setStatusType(Status.ENABLED);
-		user.setLastModifyDate(new Date());
-		return Message.create(userDao.updateByKey(user) > 0);
+		user.setStatus(Status.ENABLED.getValue());
+		user.setModifiedTime(new Date());
+		return Message.create(userDao.updateByKey(user, user.getId()) > 0);
 	}
 
 	@Override

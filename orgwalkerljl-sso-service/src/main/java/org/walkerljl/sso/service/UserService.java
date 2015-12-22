@@ -1,7 +1,7 @@
 package org.walkerljl.sso.service;
 
 import org.walkerljl.commons.Message;
-import org.walkerljl.commons.service.DefaultBaseService;
+import org.walkerljl.smart.service.BaseService;
 import org.walkerljl.sso.domain.User;
 import org.walkerljl.sso.pojo.LoginCommand;
 
@@ -11,7 +11,7 @@ import org.walkerljl.sso.pojo.LoginCommand;
  *
  * @author lijunlin
  */
-public interface UserService extends DefaultBaseService<User, Long> {
+public interface UserService extends BaseService<User, Long> {
 	
 	/**
 	 * 登录验证

@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2010-2015 www.walkerljl.org All Rights Reserved.
- * The software source code all copyright belongs to the author, 
- * without permission shall not be any reproduction and transmission.
- */
 package org.walkerljl.sso.service.sdk.impl;
 
 import java.util.List;
@@ -11,9 +6,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.walkerljl.commons.collection.ListUtils;
-import org.walkerljl.commons.log.Logger;
-import org.walkerljl.commons.log.LoggerFactory;
-import org.walkerljl.remoting.sdk.response.RemotingResponse;
+import org.walkerljl.log.Logger;
+import org.walkerljl.log.LoggerFactory;
+import org.walkerljl.remoting.api.response.RemotingResponse;
 import org.walkerljl.sso.dao.LoginInfoDao;
 import org.walkerljl.sso.domain.LoginInfo;
 import org.walkerljl.sso.sdk.LoginInfoSdk;
@@ -23,7 +18,7 @@ import org.walkerljl.sso.sdk.request.LoginInfoRequest;
 /**
  * LoginInfoSdkImpl 
  *
- * @author lijunlin<walkerljl@qq.com>
+ * @author lijunlin
  */
 @Service
 public class LoginInfoSdkImpl implements LoginInfoSdk {
@@ -40,7 +35,7 @@ public class LoginInfoSdkImpl implements LoginInfoSdk {
 			if (request.getPageNo() <= 1) {
 				response.setTotalCount(loginInfoDao.selectListCount(queryObject));
 			}
-			List<LoginInfoDto> loginInfoDtos = convertResponse(loginInfoDao.selectList(queryObject));
+			List<LoginInfoDto> loginInfoDtos = convertResponse(loginInfoDao.selectList(queryObject, 1, 200));
 			response.setResponseBody(loginInfoDtos);
 			response.setResponseBodyItemCount(loginInfoDtos.size());
 			response.setCode(RemotingResponse.CODE_OK);

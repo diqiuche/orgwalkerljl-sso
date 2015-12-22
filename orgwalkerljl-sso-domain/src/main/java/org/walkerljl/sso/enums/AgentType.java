@@ -1,16 +1,10 @@
-/*
- * Copyright (c) 2010-2015 www.walkerljl.org All Rights Reserved.
- * The software source code all copyright belongs to the author, 
- * without permission shall not be any reproduction and transmission.
- */
-package org.walkerljl.sso.enumeration;
+package org.walkerljl.sso.enums;
 
-import org.walkerljl.commons.util.IntegerUtils;
 
 /**
  * 终端类型 
  *
- * @author lijunlin<walkerljl@qq.com>
+ * @author lijunlin
  */
 public enum AgentType {
 
@@ -42,7 +36,7 @@ public enum AgentType {
 	
 	public static AgentType getType(Integer value) {
 		for (AgentType type : AgentType.values()) {
-			if (IntegerUtils.equals(type.getValue(), value)) {
+			if (type != null && value != null && type.getValue().intValue() == value.intValue()) {
 				return type;
 			}
 		}

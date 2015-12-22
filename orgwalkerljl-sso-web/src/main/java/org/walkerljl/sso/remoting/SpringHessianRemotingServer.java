@@ -1,19 +1,14 @@
-/*
- * Copyright (c) 2010-2015 www.walkerljl.org All Rights Reserved.
- * The software source code all copyright belongs to the author, 
- * without permission shall not be any reproduction and transmission.
- */
 package org.walkerljl.sso.remoting;
 
 import org.walkerljl.commons.ClassScannerUtils;
 import org.walkerljl.commons.collection.ListUtils;
-import org.walkerljl.commons.service.ApplicationContextUtils;
+import org.walkerljl.smart.service.ApplicationContextUtils;
 import org.walkrljl.remoting.provider.hessian.server.HessianRemotingServer;
 
 /**
  * SpringHessianRemotingServer 
  *
- * @author lijunlin<walkerljl@qq.com>
+ * @author lijunlin
  */
 public class SpringHessianRemotingServer extends HessianRemotingServer {
 

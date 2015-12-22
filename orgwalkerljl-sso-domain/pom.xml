@@ -10,8 +10,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.walkerljl.commons</groupId>
-			<artifactId>orgwalkerljl-commons-domain</artifactId>
+			<groupId>org.walkerljl.smart</groupId>
+			<artifactId>orgwalkerljl-smart-domain</artifactId>
 		</dependency>
 	</dependencies>
 </project>

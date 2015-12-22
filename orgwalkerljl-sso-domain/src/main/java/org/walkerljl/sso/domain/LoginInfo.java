@@ -1,19 +1,14 @@
-/*
- * Copyright (c) 2010-2015 lijunlin All Rights Reserved.
- * The software source code all copyright belongs to the author, 
- * without permission shall not be any reproduction and transmission.
- */
 package org.walkerljl.sso.domain;
 
 import java.util.Date;
 
-import org.walkerljl.commons.domain.BaseDomain;
-import org.walkerljl.sso.enumeration.AgentType;
+import org.walkerljl.smart.domain.BaseDomain;
+import org.walkerljl.sso.enums.AgentType;
 
 /**
  * 登录信息
  * 
- * @author lijunlin<walkerljl@qq.com>
+ * @author lijunlin
  */
 public class LoginInfo extends BaseDomain {
 	

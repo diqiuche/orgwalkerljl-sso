@@ -1,19 +1,14 @@
-/*
- * Copyright (c) 2010-2015 www.walkerljl.org All Rights Reserved.
- * The software source code all copyright belongs to the author, 
- * without permission shall not be any reproduction and transmission.
- */
 package org.walkerljl.sso.sdk.request;
 
 import java.util.Date;
 
-import org.walkerljl.remoting.sdk.request.RemotingRequest;
+import org.walkerljl.remoting.api.request.RemotingRequest;
 import org.walkerljl.sso.sdk.dto.AgentType;
 
 /**
  * LoginInfoRequest 
  *
- * @author lijunlin<walkerljl@qq.com>
+ * @author lijunlin
  */
 public class LoginInfoRequest extends RemotingRequest {
 
