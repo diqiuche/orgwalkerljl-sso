@@ -14,7 +14,6 @@
     http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
        
    	<import resource="classpath*:sso-dao.xml" />
-   	<import resource="classpath*:commons-service.xml" />
     
     <!-- 配置扫描指定包下的类 -->
 	<context:component-scan base-package="org.walkerljl.sso.service"/>
@@ -22,11 +21,11 @@
 	<!-- 配置AOP切面 -->
 	<aop:aspectj-autoproxy/>
     
-    <bean class="org.walkerljl.commons.service.ApplicationContextUtils" />
+    <bean class="org.walkerljl.smart.service.ApplicationContextUtils" />
     
     <!-- 配置事务管理 -->
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="masterDataSource"/>
     </bean>
     
 	<!-- 配置注解实现管理事务 -->

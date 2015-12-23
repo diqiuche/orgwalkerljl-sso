@@ -7,4 +7,26 @@
   </parent>
   <artifactId>orgwalkerljl-sso-openservice</artifactId>
   <packaging>war</packaging>
+  
+  <dependencies>
+		<dependency>
+			<groupId>org.walkerljl.sso</groupId>
+			<artifactId>orgwalkerljl-sso-service</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.walkerljl.smart</groupId>
+			<artifactId>orgwalkerljl-smart-mvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.walkerljl.remoting</groupId>
+			<artifactId>orgwalkerljl-remoting-provider-hessian</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
+	</dependencies>
 </project>

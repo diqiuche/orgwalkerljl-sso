@@ -2,7 +2,9 @@ package org.walkerljl.sso.domain;
 
 import java.util.Date;
 
-import org.walkerljl.smart.domain.BaseDomain;
+import org.walkerljl.db.api.annotation.Column;
+import org.walkerljl.db.api.annotation.Entity;
+import org.walkerljl.smart.domain.Page;
 import org.walkerljl.sso.enums.AgentType;
 
 /**
@@ -10,21 +12,25 @@ import org.walkerljl.sso.enums.AgentType;
  * 
  * @author lijunlin
  */
-public class LoginInfo extends BaseDomain {
+@Entity("sso_login_info")
+public class LoginInfo extends Page<Object> {
 	
 	private static final long serialVersionUID = 1L;
 
-	/** 账号Id*/
+	/** 编号*/
+	@Column(key = true, value = "id")
+	private Long id;
+	/** 账号Id*/ @Column("user_id")
 	private String userId;
-	/** 账号名称*/
+	/** 账号名称*/ @Column("user_name")
 	private String userName;
-	/** 登录IP*/
+	/** 登录IP*/ @Column("login_ip")
 	private String loginIp;
-	/** 登录日期*/
-	private Date loginDate;
-	/** 注销日期*/
-	private Date logoutDate;
-	/** 登录终端*/
+	/** 登录时间*/ @Column("login_time")
+	private Date loginTime;
+	/** 注销时间*/ @Column("logout_time")
+	private Date logoutTime;
+	/** 登录终端*/ @Column("login_agent")
 	private Integer loginAgent;
 	
 	public LoginInfo() {}
@@ -45,6 +51,23 @@ public class LoginInfo extends BaseDomain {
 	public String getLoginAgentName() {
 		AgentType agentType = getLoginAgentType();
 		return agentType == null ? "" : agentType.getName();
+	}
+	
+	//getters and setters
+	 /**
+     * 获取编号
+     * @return
+     */
+	public Long getId() {
+		return id;
+	}
+
+    /**
+     * 设置编号
+     * @param id
+     */
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	/**
@@ -96,35 +119,35 @@ public class LoginInfo extends BaseDomain {
 	}
 
 	/**
-	 * 获取登录日期
+	 * 获取登录时间
 	 * @return
 	 */
-	public Date getLoginDate() {
-		return loginDate;
+	public Date getLoginTime() {
+		return loginTime;
 	}
 
 	/**
-	 * 设置登录日期
-	 * @param loginDate
+	 * 设置登录时间
+	 * @param loginTime
 	 */
-	public void setLoginDate(Date loginDate) {
-		this.loginDate = loginDate;
+	public void setLoginTime(Date loginTime) {
+		this.loginTime = loginTime;
 	}
 
 	/**
-	 * 获取注销日期
+	 * 获取注销时间
 	 * @return
 	 */
-	public Date getLogoutDate() {
-		return logoutDate;
+	public Date getLogoutTime() {
+		return logoutTime;
 	}
 
 	/**
-	 * 设置注销日期
-	 * @param logoutDate
+	 * 设置注销时间
+	 * @param logoutTime
 	 */
-	public void setLogoutDate(Date logoutDate) {
-		this.logoutDate = logoutDate;
+	public void setLogoutTime(Date logoutTime) {
+		this.logoutTime = logoutTime;
 	}
 
 	/**

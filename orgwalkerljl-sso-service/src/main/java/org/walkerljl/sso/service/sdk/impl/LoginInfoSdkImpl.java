@@ -59,8 +59,8 @@ public class LoginInfoSdkImpl implements LoginInfoSdk {
 				loginInfoDto.setUserId(loginInfo.getUserId());
 				loginInfoDto.setUserName(loginInfo.getUserName());
 				loginInfoDto.setLoginIp(loginInfo.getLoginIp());
-				loginInfoDto.setLoginDate(loginInfo.getLoginDate());
-				loginInfoDto.setLogoutDate(loginInfo.getLogoutDate());
+				loginInfoDto.setLoginDate(loginInfo.getLoginTime());
+				loginInfoDto.setLogoutDate(loginInfo.getLogoutTime());
 				loginInfoDto.setLoginAgent(loginInfo.getLoginAgent());
 			}
 		}
@@ -74,8 +74,8 @@ public class LoginInfoSdkImpl implements LoginInfoSdk {
 		LoginInfo loginInfo = new LoginInfo();
 		loginInfo.setUserId(request.getUserId());
 		loginInfo.setUserName(request.getUserName());
-		loginInfo.setLoginDate(request.getLoginDate());
-		loginInfo.setLogoutDate(request.getLogoutDate());
+		loginInfo.setLoginTime(request.getLoginDate());
+		loginInfo.setLogoutTime(request.getLogoutDate());
 		loginInfo.setLoginIp(request.getLoginIp());
 		loginInfo.setLoginAgent(request.getLoginAgent());
 		loginInfo.setPageSize(request.getPageSize());

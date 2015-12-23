@@ -16,16 +16,16 @@
 <tbody>
 #foreach($rowModel in $!{model.result})
 <tr>
-	<td>$!{rowModel.accountNo}</td>
-	<td>$!{rowModel.accountName}</td>
+	<td>$!{rowModel.userId}</td>
+	<td>$!{rowModel.userName}</td>
 	<td>$!{rowModel.email}</td>
 	<td>$!{rowModel.mobile}</td>
 	<td>$!{rowModel.statusName}</td>
-	<td>$dateUtils.dateFormatDateTime($!{rowModel.lastLoginDate})</td>
+	<td>$dateUtils.dateFormatDateTime($!{rowModel.lastLoginTime})</td>
 	<td>$!{rowModel.lastLoginIp}</td>
 	<td>$!{rowModel.lastLoginAgent}</td>
-	<td>$dateUtils.dateFormatDateTime($!{rowModel.lastLoginDate})</td>
-	<td>$dateUtils.dateFormatDateTime($!{rowModel.lastModifyDate})</td>
+	<td>$dateUtils.dateFormatDateTime($!{rowModel.createdTime})</td>
+	<td>$dateUtils.dateFormatDateTime($!{rowModel.modifiedTime})</td>
 </tr>
 #end
 </tbody>

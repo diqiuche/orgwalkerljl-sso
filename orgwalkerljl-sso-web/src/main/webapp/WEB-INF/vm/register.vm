@@ -6,12 +6,12 @@
 <form>
 	<label style="color:red;">$!{message.body}</label>
 	<div class="form-group">
-    <label for="accountNo">登录账号</label>
-    <input type="input" class="form-control" id="accountNo" name="accountNo" placeholder="登录账号" />
+    <label for="userId">用户ID(登录时的账号)</label>
+    <input type="input" class="form-control" id="userId" name="userId" placeholder="用户ID" />
   </div>
   <div class="form-group">
-    <label for="accountName">登录名</label>
-    <input type="input" class="form-control" id="accountName" name="accountName" placeholder="登录名" />
+    <label for="userName">用户名</label>
+    <input type="input" class="form-control" id="userName" name="userName" placeholder="用户名" />
   </div>
   <div class="form-group">
     <label for="email">邮箱</label>
@@ -33,21 +33,21 @@
 </form>
 <script>
 	var register = function() {
-		if ($("#accountNo").val() == '') {
-			alert('登录账号不能为空');
-			$("#accountNo").focus();
+		if ($("#userId").val() == '') {
+			alert('用户ID不能为空');
+			$("#userId").focus();
 			return;
-		} else if ($("#accountNo").val().length > 64) {
-			alert('登录账号不能超过64个字符');
-			$("#accountNo").focus();
+		} else if ($("#userId").val().length > 64) {
+			alert('用户ID不能超过64个字符');
+			$("#userId").focus();
 			return;
-		} else if ($("#accountName").val() == '') {
-			alert('登录名不能为空');
-			$("#accountName").focus();
+		} else if ($("#userName").val() == '') {
+			alert('用户名不能为空');
+			$("#userName").focus();
 			return;
-		} else if ($("#accountName").val().length > 64) {
-			alert('登录名不能超过64个字符');
-			$("#accountName").focus();
+		} else if ($("#userName").val().length > 64) {
+			alert('用户名不能超过64个字符');
+			$("#userName").focus();
 			return;
 		} else if ($("#password").val() == '') {
 			alert('登录密码不能为空');

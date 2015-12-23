@@ -9,40 +9,70 @@
 	http://www.springframework.org/schema/context/spring-context-3.1.xsd
 	http://www.springframework.org/schema/aop 
     http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
-    
-     <!-- 加载组件配置 -->
-	<import resource="classpath*:commons-dao.xml"/>
-	
+    	
     <!-- 配置扫描指定包下的类 -->
 	<context:component-scan base-package="org.walkerljl.sso.dao"/>
 	<!-- 配置AOP切面 -->
 	<aop:aspectj-autoproxy/>
 	
-	<!-- 连接池使用BonCp -->
-	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
-		<property name="driverClass" value="${jdbc.driverClass}"/>
-		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"/>
-		<property name="username" value="${jdbc.username}"/>
-		<property name="password" value="${jdbc.password}"/>
-		<property name="idleConnectionTestPeriodInMinutes" value="${jdbc.idleConnectionTestPeriod}"/>
-		<property name="idleMaxAgeInMinutes" value="${jdbc.idleMaxAge}"/>
-		<property name="maxConnectionsPerPartition" value="${jdbc.maxConnectionsPerPartition}"/>
-		<property name="minConnectionsPerPartition" value="${jdbc.minConnectionsPerPartition}"/>
-		<property name="partitionCount" value="${jdbc.partitionCount}"/>
-		<property name="acquireIncrement" value="${jdbc.acquireIncrement}"/>
-		<property name="statementsCacheSize" value="${jdbc.statementsCacheSize}"/>
-		<property name="releaseHelperThreads" value="${jdbc.releaseHelperThreads}"/>
-		<property name="connectionTimeoutInMs" value="${jdbc.connectionTimeoutInMs}"/>
+	<bean id="abstractDataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${jdbc.driverClass}" />
+		<property name="idleConnectionTestPeriodInMinutes" value="${jdbc.idleConnectionTestPeriod}" />
+		<property name="idleMaxAgeInMinutes" value="${jdbc.idleMaxAge}" />
+		<property name="maxConnectionsPerPartition" value="${jdbc.maxConnectionsPerPartition}" />
+		<property name="minConnectionsPerPartition" value="${jdbc.minConnectionsPerPartition}" />
+		<property name="partitionCount" value="${jdbc.partitionCount}" />
+		<property name="acquireIncrement" value="${jdbc.acquireIncrement}" />
+		<property name="statementsCacheSize" value="${jdbc.statementsCacheSize}" />
+		<property name="releaseHelperThreads" value="${jdbc.releaseHelperThreads}" />
+		<property name="connectionTimeoutInMs" value="${jdbc.connectionTimeoutInMs}" />
+		<property name="connectionTestStatement" value="SELECT 1" />
 	</bean>
-	
-    <!-- mybatis sqlSessionFactory配置 -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="configLocation" value="classpath:mybatis-config.xml"/>
-    </bean>
-    
+
+	<bean id="masterDataSource" parent="abstractDataSource">
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<bean id="slave0DataSource" parent="abstractDataSource">
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<bean id="routingDataSource" class="org.walkerljl.smart.dao.rw.RoutingDataSource">
+		<property name="masterDataSource" ref="masterDataSource" />
+		<property name="slaveDataSoures">
+			<list>
+				<ref bean="slave0DataSource" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- mybatis sqlSessionFactory配置 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="routingDataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+	</bean>
+
 	<!-- MyBatis 的SqlSessionTemplate -->
 	<bean id="sqlTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg index="0" ref="sqlSessionFactory"/>
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- orgwalkerljl-db组件 -->
+	<bean id="databaseType"
+		class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+		<property name="staticField"
+			value="org.walkerljl.db.orm.enums.DatabaseType.MYSQL" />
+	</bean>
+	<bean id="orgwalkerljlDbConfiguration" class="org.walkerljl.db.orm.session.Configuration">
+		<property name="dataSource" ref="masterDataSource" />
+		<property name="databaseType" ref="databaseType" />
+	</bean>
+	<bean id="sqlSession" class="org.walkerljl.db.orm.session.defaults.DefaultSqlSession">
+		<constructor-arg index="0" ref="orgwalkerljlDbConfiguration" />
 	</bean>
 </beans>

@@ -38,16 +38,16 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 	}
 	
 	@Override
-	public User getUserByAccountNo(String accountNo) {
+	public User getUserByUserId(String userId) {
 		User condition = new User();
-		condition.setAccountNo(accountNo);	
+		condition.setUserId(userId);	
 		return userDao.selectOne(condition);
 	}
 
 	@Override @Transactional(rollbackFor = Exception.class)
 	public Message login(LoginCommand command) {
 		if (command == null) {
-			LOGGER.warn("Command is null");
+			LOGGER.warn("登录命令为空");
 			return Message.failure();
 		}
 		
@@ -61,7 +61,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 			return Message.failure();
 		}
 		
-		User dbUser = getUserByAccountNo(command.getUserId());
+		User dbUser = getUserByUserId(command.getUserId());
 		if (dbUser == null || !dbUser.isEnabled()) {
 			LOGGER.warn(String.format("Invalid user information,condition:{accountNo:%s}", command.getUserId()));
 			return Message.failure();
@@ -70,7 +70,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 		//随机盐+三次MD5加密
 		String expectedPassword = getEncryptedPassword(command.getPassword(), dbUser.getSalt() + "");
 		if (expectedPassword.equals(dbUser.getPassword())) {
-			command.setUserName(dbUser.getAccountName());
+			command.setUserName(dbUser.getUserName());
 			//更新最新登录状态
 			updateLastLoginStatus(dbUser.getId(), command);
 			//记录登录信息
@@ -99,7 +99,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 	 */
 	private void updateLastLoginStatus(Long key, LoginCommand command) {
 		User userStatus = new User();
-		userStatus.setLastLoginDate(new Date());
+		userStatus.setLastLoginTime(new Date());
 		userStatus.setLastLoginIp(command.getLoginIp());
 		userStatus.setLastLoginAgent(command.getLoginAgent().getValue());
 		userDao.updateByKey(userStatus, key);
@@ -114,21 +114,21 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 		loginInfo.setUserId(command.getUserId());
 		loginInfo.setUserName(command.getUserName());
 		loginInfo.setLoginIp(command.getLoginIp());
-		loginInfo.setLoginDate(new Date());
-		loginInfo.setLogoutDate(loginInfo.getLoginDate());
+		loginInfo.setLoginTime(new Date());
+		loginInfo.setLogoutTime(loginInfo.getLoginTime());
 		loginInfo.setLoginAgent(command.getLoginAgent().getValue());
 		loginInfoDao.insert(loginInfo);
 	}
 
 	@Override
-	public boolean accountNoIsExists(String accountNo) {
-		return getUserByAccountNo(accountNo) != null;
+	public boolean userIdIsExists(String userId) {
+		return getUserByUserId(userId) != null;
 	}
 	
 	@Override
-	public boolean accountNameIsExists(String accountName) {
+	public boolean userNameIsExists(String userName) {
 		User condition = new User();
-		condition.setAccountName(accountName);
+		condition.setUserName(userName);
 		return userDao.selectOne(condition) != null;
 	}
 
@@ -148,16 +148,16 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 
 	@Override
 	public Message register(User user) {
-		if (StringUtils.isEmpty(user.getAccountNo())) {
-			return Message.failure("登录账号不能为空");
-		} else if (StringUtils.isEmpty(user.getAccountName())) {
-			return Message.failure("登录名不能为空");
+		if (StringUtils.isEmpty(user.getUserId())) {
+			return Message.failure("用户ID为空");
+		} else if (StringUtils.isEmpty(user.getUserName())) {
+			return Message.failure("用户名为空");
 		} else if (StringUtils.isEmpty(user.getPassword())) {
-			return Message.failure("登录密码不能为空");
-		} else if (accountNoIsExists(user.getAccountNo())) {
-			return Message.failure("登录账号已存在");
-		} else if (accountNameIsExists(user.getAccountName())) {
-			return Message.failure("登录名已存在");
+			return Message.failure("登录密码为空");
+		} else if (userIdIsExists(user.getUserId())) {
+			return Message.failure("用户ID已存在");
+		} else if (userNameIsExists(user.getUserName())) {
+			return Message.failure("用户名已存在");
 		} if (StringUtils.isNotEmpty(user.getEmail()) && emailIsExists(user.getEmail())) {
 			return Message.failure("邮箱已被账号绑定");
 		} if (StringUtils.isNotEmpty(user.getMobile()) && mobileIsExists(user.getMobile())) {
@@ -178,8 +178,8 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 	}
 	
 	@Override
-	public Message confirmRegister(String accountNo) {
-		User user = getUserByAccountNo(accountNo);
+	public Message confirmRegister(String userId) {
+		User user = getUserByUserId(userId);
 		if (user == null) {
 			return Message.failure("用户不存在");
 		} else if (!user.isDisabled()) {

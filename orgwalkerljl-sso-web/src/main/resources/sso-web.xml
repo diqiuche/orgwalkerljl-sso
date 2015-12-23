@@ -7,14 +7,12 @@
 	http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
 	<!-- 加载配置文件 -->
-	<bean class="org.walkerljl.commons.mvc.CustomizedPropertyConfigurer">
+	<bean class="org.walkerljl.smart.mvc.CustomizedPropertyConfigurer">
 	<property name="ignoreUnresolvablePlaceholders" value="true" />
 		<property name="locations">
 			<list>
 				<value>classpath:conf/important.properties</value>
-				<value>classpath:conf/sso.properties</value>
-				<value>classpath:db.properties</value>
-				<value>classpath:sso-auth.properties</value>
+				<value>classpath:conf/config.properties</value>
 			</list>
 		</property>
 	</bean>

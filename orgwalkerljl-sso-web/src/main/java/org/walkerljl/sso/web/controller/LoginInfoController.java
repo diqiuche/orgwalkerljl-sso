@@ -24,7 +24,6 @@ public class LoginInfoController extends CurdTemplate<LoginInfo> {
 	@Resource private LoginInfoService loginInfoService;
 	
 	public LoginInfoController() {
-		super();
 		setObjectIdentifer("loginInfo");
 	}
 	

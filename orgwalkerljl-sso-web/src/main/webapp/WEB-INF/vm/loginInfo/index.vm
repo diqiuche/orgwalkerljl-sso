@@ -5,19 +5,19 @@
 	<th>姓名</th>
 	<th>终端</th>
 	<th>IP</th>
-	<th>登录日期</th>
-	<th>登出日期</th>
+	<th>登录时间</th>
+	<th>登出时间</th>
 </tr>
 </thead>
 <tbody>
-#foreach($rowModel in $!{model.result})
+#foreach($item in $!{model.result})
 <tr>
-	<td>$!{rowModel.userId}</td>
-	<td>$!{rowModel.userName}</td>
-	<td>$!{rowModel.loginAgentName}</td>
-	<td>$!{rowModel.loginIp}</td>
-	<td>$dateUtils.dateFormatDateTime($!{rowModel.loginDate})</td>
-	<td>$dateUtils.dateFormatDateTime($!{rowModel.logoutDate})</td>
+	<td>$!{item.userId}</td>
+	<td>$!{item.userName}</td>
+	<td>$!{item.loginAgentName}</td>
+	<td>$!{item.loginIp}</td>
+	<td>$dateUtils.dateFormatDateTime($!{item.loginTime})</td>
+	<td>$dateUtils.dateFormatDateTime($!{item.logoutTime})</td>
 </tr>
 #end
 </tbody>

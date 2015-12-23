@@ -22,10 +22,10 @@ public interface UserService extends BaseService<User, Long> {
 	
 	/**
 	 * 通过登录账号获取用户信息
-	 * @param accountNo
+	 * @param userId
 	 * @return
 	 */
-	User getUserByAccountNo(String accountNo);
+	User getUserByUserId(String userId);
 	
 	/**
 	 * 注册
@@ -36,10 +36,10 @@ public interface UserService extends BaseService<User, Long> {
 	
 	/**
 	 * 确认注册
-	 * @param accountNo
+	 * @param userId
 	 * @return
 	 */
-	Message confirmRegister(String accountNo);
+	Message confirmRegister(String userId);
 
 	/**
 	 * 修改密码
@@ -57,17 +57,17 @@ public interface UserService extends BaseService<User, Long> {
 	
 	/**
 	 * 登录账号是否存在
-	 * @param accountNo
+	 * @param userId
 	 * @return
 	 */
-	boolean accountNoIsExists(String accountNo);
+	boolean userIdIsExists(String userId);
 	
 	/**
 	 * 登录名是否存在
-	 * @param accountName
+	 * @param userName
 	 * @return
 	 */
-	boolean accountNameIsExists(String accountName);
+	boolean userNameIsExists(String userName);
 	
 	/**
 	 * 邮箱是否存在

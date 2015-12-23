@@ -99,11 +99,12 @@ public class IndexController extends DefaultIndexController {
 	@RequestMapping(value = "/register")
 	public ModelAndView register(User user) {
 		ViewResult viewResult = new ViewResult();
-		if (user.getAccountNo() != null) {
+		user.setAlias("");
+		if (user.getUserId() != null) {
 			initBaseDomainWhenCreate(user);
-			user.setCreator(user.getAccountNo());
+			user.setCreator(user.getUserId());
 			user.setModifier(user.getCreator());
-			user.setLastLoginDate(user.getCreatedTime());
+			user.setLastLoginTime(user.getCreatedTime());
 			user.setLastLoginIp(getIpAddr(getRequest()));
 			user.setLastLoginAgent(AgentType.PC.getValue());
 			if (user.isConfirmEmail()) {//验证邮箱

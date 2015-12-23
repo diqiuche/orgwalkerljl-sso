@@ -2,6 +2,8 @@ package org.walkerljl.sso.domain;
 
 import java.util.Date;
 
+import org.walkerljl.db.api.annotation.Column;
+import org.walkerljl.db.api.annotation.Entity;
 import org.walkerljl.smart.domain.BaseDomain;
 import org.walkerljl.sso.enums.AgentType;
 
@@ -11,30 +13,33 @@ import org.walkerljl.sso.enums.AgentType;
  *
  * @author lijunlin
  */
+@Entity("sso_user")
 public class User extends BaseDomain {
 
 	private static final long serialVersionUID = 1L;
 
-	/** 账号Id*/
-	private String accountNo;
-	/** 账号名称*/
-	private String accountName;
-	/** 邮箱*/
+	/** 账号Id*/ @Column("user_id")
+	private String userId;
+	/** 账号名称*/ @Column("user_name")
+	private String userName;
+	/** 别名/昵称*/ @Column("alias")
+	private String alias;
+	/** 邮箱*/ @Column("email")
 	private String email;
-	/** 手机*/
+	/** 手机*/ @Column("mobile")
 	private String mobile;
-	/** 密码*/
+	/** 密码*/ @Column("password")
 	private String password;
-	/** 随机盐*/
+	/** 随机盐*/ @Column("salt")
 	private String salt;
-	/** 最新登录日期*/
-	private Date lastLoginDate;
-	/** 最新登录Ip*/
+	/** 最新登录时间*/ @Column("last_login_time")
+	private Date lastLoginTime;
+	/** 最新登录Ip*/ @Column("last_login_ip")
 	private String lastLoginIp;
-	/** 最新登录终端*/
+	/** 最新登录终端*/ @Column("last_login_agent")
 	private Integer lastLoginAgent;
 	//扩展字段
-	/** 旧密码*/
+	/** 旧密码*/ 
 	private String oldPassword;
 	/** 是否验证邮箱*/
 	private boolean confirmEmail;
@@ -59,20 +64,28 @@ public class User extends BaseDomain {
 		return agentType == null ? "" : agentType.getName();
 	}
 
-	public String getAccountNo() {
-		return accountNo;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setAccountNo(String accountNo) {
-		this.accountNo = accountNo;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	public String getAccountName() {
-		return accountName;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setAccountName(String accountName) {
-		this.accountName = accountName;
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias) {
+		this.alias = alias;
 	}
 
 	public String getEmail() {
@@ -107,12 +120,12 @@ public class User extends BaseDomain {
 		this.salt = salt;
 	}
 
-	public Date getLastLoginDate() {
-		return lastLoginDate;
+	public Date getLastLoginTime() {
+		return lastLoginTime;
 	}
 
-	public void setLastLoginDate(Date lastLoginDate) {
-		this.lastLoginDate = lastLoginDate;
+	public void setLastLoginTime(Date lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
 	}
 
 	public String getLastLoginIp() {

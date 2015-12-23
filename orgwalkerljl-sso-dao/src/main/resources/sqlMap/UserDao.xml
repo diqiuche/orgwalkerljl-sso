@@ -6,23 +6,21 @@
 	<!-- 定义实体映射 -->
 	<resultMap type="user" id="resultMap">
 		<result property="id" column="id" />
-		<result property="accountNo" column="account_no" />
-		<result property="accountName" column="account_name" />
+		<result property="userId" column="user_id" />
+		<result property="userName" column="user_name" />
 		<result property="email" column="email" />
 		<result property="mobile" column="mobile" />
 		<result property="password" column="password" />
 		<result property="salt" column="salt" />
-		<result property="lastLoginDate" column="last_login_date" />
+		<result property="lastLoginTime" column="last_login_time" />
 		<result property="lastLoginIp" column="last_login_ip" />
 		<result property="lastLoginAgent" column="last_login_agent" />
 		<result property="remark" column="remark" />
 		<result property="status" column="status" />
-		<result property="createDate" column="create_date" />
-		<result property="createUserId" column="create_user_id" />
-		<result property="createUserName" column="create_user_name" />
-		<result property="lastModifyDate" column="last_modify_date" />
-		<result property="lastModifyUserId" column="last_modify_user_id" />
-		<result property="lastModifyUserName" column="last_modify_user_name" />
+		<result property="creator" column="creator" />
+		<result property="createdTime" column="created_time" />
+		<result property="modifier" column="modifier" />
+		<result property="modifiedTime" column="modified_time" />
 	</resultMap>
 
 	<!-- 表名 -->
@@ -30,22 +28,22 @@
 
 	<!-- 插入字段 -->
 	<sql id="INSERT_COLUMNS">
-  		<![CDATA[(account_no,account_name,email,mobile,password,salt,last_login_date,last_login_ip,last_login_agent]]>
-		<include refid="org.walkerljl.commons.dao.BaseDao.INSERT_COLUMNS" />
+  		<![CDATA[(account_no,account_name,email,mobile,password,salt,last_login_time,last_login_ip,last_login_agent]]>
+		<include refid="org.walkerljl.smart.dao.BaseDao.INSERT_COLUMNS" />
   		<![CDATA[)]]>
 	</sql>
 
 	<!-- 插入字段值 -->
 	<sql id="INSERT_VALUES">
-		<![CDATA[(#{accountNo},#{accountName},#{email},#{mobile},#{password},#{salt},#{lastLoginDate},#{lastLoginIp},#{lastLoginAgent}]]>
-		<include refid="org.walkerljl.commons.dao.BaseDao.INSERT_VALUES" />
+		<![CDATA[(#{accountNo},#{accountName},#{email},#{mobile},#{password},#{salt},#{lastLoginTime},#{lastLoginIp},#{lastLoginAgent}]]>
+		<include refid="org.walkerljl.smart.dao.BaseDao.INSERT_VALUES" />
   		<![CDATA[)]]>
 	</sql>
 
 	<!-- 批量插入字段值 -->
 	<sql id="BATCH_INSERT_VALUES">
-		<![CDATA[(#{item.accountNo},#{item.accountName},#{item.email},#{item.mobile},#{item.password},#{item.salt},#{item.lastLoginDate},#{item.lastLoginIp},#{item.lastLoginAgent}]]>
-		<include refid="org.walkerljl.commons.dao.BaseDao.BATCH_INSERT_VALUES" />
+		<![CDATA[(#{item.accountNo},#{item.accountName},#{item.email},#{item.mobile},#{item.password},#{item.salt},#{item.lastLoginTime},#{item.lastLoginIp},#{item.lastLoginAgent}]]>
+		<include refid="org.walkerljl.smart.dao.BaseDao.BATCH_INSERT_VALUES" />
   		<![CDATA[)]]>
 	</sql>
 
@@ -53,55 +51,55 @@
 	<sql id="DELETE_BY_CONDITION_WHERE_CLAUSE">
 		<where>
 			<if test="id != null"><![CDATA[AND id = #{id}]]></if>
-			<if test="accountNo != null and accountNo != ''"><![CDATA[AND account_no = #{accountNo}]]></if>
-			<if test="accountName != null and accountName != ''"><![CDATA[AND account_name = #{accountName}]]></if>
+			<if test="userId != null and userId != ''"><![CDATA[AND user_id = #{userId}]]></if>
+			<if test="userName != null and userName != ''"><![CDATA[AND user_name = #{userName}]]></if>
 			<if test="email != null and email != ''"><![CDATA[AND email = #{email}]]></if>
 			<if test="mobile != null and mobile != ''"><![CDATA[AND mobile = #{mobile}]]></if>
 			<if test="password != null and password != ''"><![CDATA[AND password = #{password}]]></if>
 			<if test="salt != null and salt != ''"><![CDATA[AND salt = #{salt}]]></if>
-			<if test="lastLoginDate != null"><![CDATA[AND last_login_date = #{lastLoginDate}]]></if>
+			<if test="lastLoginTime != null"><![CDATA[AND last_login_time = #{lastLoginTime}]]></if>
 			<if test="lastLoginIp != null and lastLoginIp != ''"><![CDATA[AND last_login_ip = #{lastLoginIp}]]></if>
 			<if test="lastLoginAgent != null"><![CDATA[AND last_login_agent = #{lastLoginAgent}]]></if>
-			<include refid="org.walkerljl.commons.dao.BaseDao.DELETE_BY_CONDITION_WHERE_CLAUSE" />
+			<include refid="org.walkerljl.smart.dao.BaseDao.DELETE_BY_CONDITION_WHERE_CLAUSE" />
 		</where>
 	</sql>
 
 	<!-- 更新列字段,字段不为NULL则更新,除开主键 -->
 	<sql id="UPDATE_COLUMN_SET">
 		<set>
-			<if test="accountNo != null and accountNo != ''"><![CDATA[a.account_no = #{accountNo},]]></if>
-			<if test="accountName != null and accountName != ''"><![CDATA[a.account_name = #{accountName},]]></if>
+			<if test="userId != null and userId != ''"><![CDATA[a.user_id = #{userId},]]></if>
+			<if test="userName != null and userName != ''"><![CDATA[a.user_name = #{userName},]]></if>
 			<if test="email != null and email != ''"><![CDATA[a.email = #{email},]]></if>
 			<if test="mobile != null and mobile != ''"><![CDATA[a.mobile = #{mobile},]]></if>
 			<if test="password != null and password != ''"><![CDATA[a.password = #{password},]]></if>
 			<if test="salt != null and salt != ''"><![CDATA[a.salt = #{salt},]]></if>
-			<if test="lastLoginDate != null"><![CDATA[a.last_login_date = #{lastLoginDate},]]></if>
+			<if test="lastLoginTime != null"><![CDATA[a.last_login_time = #{lastLoginTime},]]></if>
 			<if test="lastLoginIp != null and lastLoginIp != ''"><![CDATA[a.last_login_ip = #{lastLoginIp},]]></if>
 			<if test="lastLoginAgent != null"><![CDATA[a.last_login_agent = #{lastLoginAgent},]]></if>
-			<include refid="org.walkerljl.commons.dao.BaseDao.UPDATE_COLUMN_SET" />
+			<include refid="org.walkerljl.smart.dao.BaseDao.UPDATE_COLUMN_SET" />
 		</set>
 	</sql>
 
 	<!-- 实体对应表中的所有字段 -->
 	<sql id="QUERY_COLUMN_LIST">
-		<![CDATA[a.id,a.account_no,a.account_name,a.email,a.mobile,a.password,a.salt,a.last_login_date,a.last_login_ip,a.last_login_agent]]>
-		<include refid="org.walkerljl.commons.dao.BaseDao.QUERY_COLUMN_LIST" />
+		<![CDATA[a.id,a.account_no,a.account_name,a.email,a.mobile,a.password,a.salt,a.last_login_time,a.last_login_ip,a.last_login_agent]]>
+		<include refid="org.walkerljl.smart.dao.BaseDao.QUERY_COLUMN_LIST" />
 	</sql>
 
 	<!-- 全部查询条件 -->
 	<sql id="QUERY_WHERE_CLAUSE">
 		<where>
 			<if test="id != null"><![CDATA[AND a.id = #{id}]]></if>
-			<if test="accountNo != null and accountNo != ''"><![CDATA[AND a.account_no = #{accountNo}]]></if>
-			<if test="accountName != null and accountName != ''"><![CDATA[AND a.account_name = #{accountName}]]></if>
+			<if test="userId != null and userId != ''"><![CDATA[AND a.user_id = #{userId}]]></if>
+			<if test="userName != null and userName != ''"><![CDATA[AND a.user_name = #{userName}]]></if>
 			<if test="email != null and email != ''"><![CDATA[AND a.email = #{email}]]></if>
 			<if test="mobile != null and mobile != ''"><![CDATA[AND a.mobile = #{mobile}]]></if>
 			<if test="password != null and password != ''"><![CDATA[AND a.password = #{password}]]></if>
 			<if test="salt != null and salt != ''"><![CDATA[AND a.salt = #{salt}]]></if>
-			<if test="lastLoginDate != null"><![CDATA[AND a.last_login_date = #{lastLoginDate}]]></if>
+			<if test="lastLoginTime != null"><![CDATA[AND a.last_login_time = #{lastLoginTime}]]></if>
 			<if test="lastLoginIp != null and lastLoginIp != ''"><![CDATA[AND a.last_login_ip = #{lastLoginIp}]]></if>
 			<if test="lastLoginAgent != null"><![CDATA[AND a.last_login_agent = #{lastLoginAgent}]]></if>
-			<include refid="org.walkerljl.commons.dao.BaseDao.QUERY_WHERE_CLAUSE" />
+			<include refid="org.walkerljl.smart.dao.BaseDao.QUERY_WHERE_CLAUSE" />
 		</where>
 	</sql>
 	<!-- ======================= 自定义SQL =========================================================================== -->

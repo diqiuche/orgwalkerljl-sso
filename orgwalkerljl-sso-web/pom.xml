@@ -49,25 +49,25 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<pfile>sso-local.properties</pfile>
+				<pfile>local.properties</pfile>
 			</properties>
 		</profile>
 		<profile>
-			<id>development</id>
+			<id>dev</id>
 			<properties>
-				<pfile>sso-development.properties</pfile>
+				<pfile>dev.properties</pfile>
 			</properties>
 		</profile>
         <profile>
             <id>test</id>
             <properties>
-           		 <pfile>sso-test.properties</pfile>
+           		 <pfile>test.properties</pfile>
             </properties>
         </profile>
 		<profile>
 			<id>production</id>
 			<properties>
-				<pfile>sso-production.properties</pfile>
+				<pfile>production.properties</pfile>
 			</properties>
 		</profile>
 	</profiles>
@@ -82,10 +82,6 @@
 		<dependency>
 			<groupId>org.walkerljl.smart</groupId>
 			<artifactId>orgwalkerljl-smart-mvc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.walkerljl.remoting</groupId>
-			<artifactId>orgwalkerljl-remoting-provider-hessian</artifactId>
 		</dependency>
 		
 		<dependency>
