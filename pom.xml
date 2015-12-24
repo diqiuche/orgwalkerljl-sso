@@ -18,7 +18,6 @@
 
 	<properties>
 		<jdk.version>1.8</jdk.version>
-		<spring.version>3.1.1.RELEASE</spring.version>
 		<orgwalkerljl.commons.version>1.0.2-SNAPSHOT</orgwalkerljl.commons.version>
 		<orgwalkerljl.remoting.version>0.0.1-SNAPSHOT</orgwalkerljl.remoting.version>
 		<orgwalkerljl.smart.version>1.0.0-SNAPSHOT</orgwalkerljl.smart.version>
@@ -43,7 +42,7 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- orgwalkerljl commons -->
+			<!-- orgwalkerljl-smart -->
 			<dependency>
 				<groupId>org.walkerljl.smart</groupId>
 				<artifactId>orgwalkerljl-smart-domain</artifactId>
