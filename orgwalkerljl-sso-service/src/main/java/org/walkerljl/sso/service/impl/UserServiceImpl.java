@@ -45,25 +45,25 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 	}
 
 	@Override @Transactional(rollbackFor = Exception.class)
-	public Message login(LoginCommand command) {
+	public Message<Object> login(LoginCommand command) {
 		if (command == null) {
 			LOGGER.warn("登录命令为空");
 			return Message.failure();
 		}
 		
 		if (StringUtils.isBlank(command.getUserId())) {
-			LOGGER.warn("User id is null or blank");
+			LOGGER.warn("用户ID为空");
 			return Message.failure();
 		}
 		
 		if (StringUtils.isBlank(command.getPassword())) {
-			LOGGER.warn("User password is null or blank");
+			LOGGER.warn("登录密码为空");
 			return Message.failure();
 		}
 		
 		User dbUser = getUserByUserId(command.getUserId());
 		if (dbUser == null || !dbUser.isEnabled()) {
-			LOGGER.warn(String.format("Invalid user information,condition:{accountNo:%s}", command.getUserId()));
+			LOGGER.warn(String.format("用户信息不存在,userId:%s", command.getUserId()));
 			return Message.failure();
 		}
 		
@@ -147,7 +147,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 	}
 
 	@Override
-	public Message register(User user) {
+	public Message<Object> register(User user) {
 		if (StringUtils.isEmpty(user.getUserId())) {
 			return Message.failure("用户ID为空");
 		} else if (StringUtils.isEmpty(user.getUserName())) {
@@ -178,7 +178,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 	}
 	
 	@Override
-	public Message confirmRegister(String userId) {
+	public Message<Object> confirmRegister(String userId) {
 		User user = getUserByUserId(userId);
 		if (user == null) {
 			return Message.failure("用户不存在");
@@ -191,13 +191,13 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 	}
 
 	@Override
-	public Message updatePassword(User user) {
+	public Message<Object> updatePassword(User user) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Message resetPassword(User user) {
+	public Message<Object> resetPassword(User user) {
 		// TODO Auto-generated method stub
 		return null;
 	}

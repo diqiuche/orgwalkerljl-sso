@@ -62,8 +62,8 @@ public class IndexController extends DefaultIndexController {
 			//填充command字段值
 			command.setLoginAgent(AgentType.PC);
 			command.setLoginIp(getIpAddr(getRequest()));
-			Message message = userService.login(command);
-			if (message.result()) {
+			Message<Object> message = userService.login(command);
+			if (message.isSuccess()) {
 				if (LOG.isDebugEnabled()) {
 					LOG.debug("sendRedirect: " + returnAddress);
 				}

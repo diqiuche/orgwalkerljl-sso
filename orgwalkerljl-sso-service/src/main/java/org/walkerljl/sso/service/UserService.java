@@ -18,7 +18,7 @@ public interface UserService extends BaseService<User, Long> {
 	 * @param command
 	 * @return
 	 */
-	Message login(LoginCommand command);
+	Message<Object> login(LoginCommand command);
 	
 	/**
 	 * 通过登录账号获取用户信息
@@ -32,28 +32,28 @@ public interface UserService extends BaseService<User, Long> {
 	 * @param user
 	 * @return
 	 */
-	Message register(User user);
+	Message<Object> register(User user);
 	
 	/**
 	 * 确认注册
 	 * @param userId
 	 * @return
 	 */
-	Message confirmRegister(String userId);
+	Message<Object> confirmRegister(String userId);
 
 	/**
 	 * 修改密码
 	 * @param user
 	 * @return
 	 */
-	Message updatePassword(User user);
+	Message<Object> updatePassword(User user);
 	
 	/**
 	 * 重置密码
 	 * @param user
 	 * @return
 	 */
-	Message resetPassword(User user);
+	Message<Object> resetPassword(User user);
 	
 	/**
 	 * 登录账号是否存在

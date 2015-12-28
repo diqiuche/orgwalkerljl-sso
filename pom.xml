@@ -10,9 +10,9 @@
 		<module>orgwalkerljl-sso-common</module>
 		<module>orgwalkerljl-sso-domain</module>
 		<module>orgwalkerljl-sso-dao</module>
+		<module>orgwalkerljl-sso-sdk</module>
 		<module>orgwalkerljl-sso-service</module>
 		<module>orgwalkerljl-sso-web</module>
-		<module>orgwalkerljl-sso-sdk</module>
 		<module>orgwalkerljl-sso-openservice</module>
 	</modules>
 
@@ -40,6 +40,36 @@
 		</pluginManagement>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<pfile>local.properties</pfile>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<pfile>dev.properties</pfile>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<pfile>test.properties</pfile>
+			</properties>
+		</profile>
+		<profile>
+			<id>production</id>
+			<properties>
+				<pfile>production.properties</pfile>
+			</properties>
+		</profile>
+	</profiles>
+
 	<dependencyManagement>
 		<dependencies>
 			<!-- orgwalkerljl-smart -->
@@ -63,7 +93,7 @@
 				<artifactId>orgwalkerljl-smart-mvc</artifactId>
 				<version>${orgwalkerljl.smart.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.walkerljl.remoting</groupId>
 				<artifactId>orgwalkerljl-remoting-api</artifactId>
@@ -74,7 +104,7 @@
 				<artifactId>orgwalkerljl-remoting-provider-hessian</artifactId>
 				<version>${orgwalkerljl.remoting.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>servlet-api</artifactId>

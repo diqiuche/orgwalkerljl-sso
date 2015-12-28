@@ -7,9 +7,9 @@ set CLASSPATH=.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar
 set PATH=%JAVA_HOME%\bin;%PATH%
 
 echo processing ...
-call mvn clean package -Pproduction -Dmaven.test.skip=true
+call mvn clean -U package -Pproduction -Dmaven.test.skip=true
 
-copy orgwalkerljl-sso-web\target\*.war D:\export\App\sso.walkerljl.org\*.war
+copy orgwalkerljl-sso-web\target\*.war F:\export\App\sso.walkerljl.com\*.war
 endlocal
 echo ending ...
 

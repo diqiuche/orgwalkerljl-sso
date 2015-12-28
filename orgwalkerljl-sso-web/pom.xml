@@ -11,7 +11,7 @@
 
 	<build>
 		<filters>
-			<filter>src/main/resources/profiles/${pfile}</filter>
+			<filter>src/main/profiles/${pfile}</filter>
 		</filters>
 		<finalName>sso-web</finalName>
 		<resources>
@@ -41,36 +41,6 @@
 			</plugin>
 		</plugins>
 	</build>
-	
-	<profiles>
-		<profile>
-			<id>local</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<pfile>local.properties</pfile>
-			</properties>
-		</profile>
-		<profile>
-			<id>dev</id>
-			<properties>
-				<pfile>dev.properties</pfile>
-			</properties>
-		</profile>
-        <profile>
-            <id>test</id>
-            <properties>
-           		 <pfile>test.properties</pfile>
-            </properties>
-        </profile>
-		<profile>
-			<id>production</id>
-			<properties>
-				<pfile>production.properties</pfile>
-			</properties>
-		</profile>
-	</profiles>
 
 	<dependencies>
 		<dependency>
