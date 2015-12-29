@@ -165,4 +165,10 @@ public class LoginInfo extends Page<Object> {
 	public void setLoginAgent(Integer loginAgent) {
 		this.loginAgent = loginAgent;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("userId=%s, userName=%s, loginIp=%s, loginTime=%s, logoutTime=%s, loginAgent=%s", 
+				new Object[]{userId, userName, loginIp, loginTime, logoutTime, loginAgent});
+	}
 }

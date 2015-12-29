@@ -63,7 +63,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 		
 		User dbUser = getUserByUserId(command.getUserId());
 		if (dbUser == null || !dbUser.isEnabled()) {
-			LOGGER.warn(String.format("用户信息不存在,userId:%s", command.getUserId()));
+			LOGGER.warn(String.format("用户信息不存在, userId:%s", command.getUserId()));
 			return Message.failure();
 		}
 		
