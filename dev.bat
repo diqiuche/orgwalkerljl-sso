@@ -9,7 +9,6 @@ set PATH=%JAVA_HOME%\bin;%PATH%
 echo processing ...
 call mvn clean -U package -Pdev -Dmaven.test.skip=true
 
-copy orgwalkerljl-sso-web\target\*.war D:\export\App\sso.walkerljl.org\*.war
 endlocal
 echo ending ...
 
