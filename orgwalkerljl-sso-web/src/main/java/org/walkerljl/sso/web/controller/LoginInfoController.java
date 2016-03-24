@@ -18,13 +18,13 @@ import org.walkerljl.sso.service.LoginInfoService;
  * @author lijunlin
  */
 @Controller @Authentication(type = AuthType.CODE, code = "sso-logininfo")
-@RequestMapping(value = "/loginInfo", method = {RequestMethod.POST, RequestMethod.GET})
+@RequestMapping(value = "/logininfo", method = {RequestMethod.POST, RequestMethod.GET})
 public class LoginInfoController extends CurdTemplate<LoginInfo> {
 
 	@Resource private LoginInfoService loginInfoService;
 	
 	public LoginInfoController() {
-		setObjectIdentifer("loginInfo");
+		setObjectIdentifer("logininfo");
 	}
 	
 	@Override

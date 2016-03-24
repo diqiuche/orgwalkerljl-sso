@@ -11,19 +11,19 @@
     <title>$!{appName}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="$!{staticRes}/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="$!{staticRes}/plugin/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="$!{staticRes}/css/signin.css" rel="stylesheet">
+    <link href="$!{staticRes}/css/sso/signin.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="$!{staticRes}/bootstrap/ie/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="$!{staticRes}/bootstrap/ie/ie-emulation-modes-warning.js"></script>
+    <!--[if lt IE 9]><script src="$!{staticRes}/plugin/bootstrap/ie/3.3.5/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="$!{staticRes}/plugin/bootstrap/3.3.5/ie/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="$!{staticRes}/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="$!{staticRes}/respond.js/1.4.2/respond.min.js"></script>
+      <script src="$!{staticRes}/js/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="$!{staticRes}/js/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
 
@@ -38,11 +38,11 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="$!{staticRes}/jquery/1.11.3/jquery.min.js"></script>
-    <script src="$!{staticRes}/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="$!{staticRes}/plugin/jquery/1.11.3/jquery.min.js"></script>
+    <script src="$!{staticRes}/plugin/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="$!{staticRes}/bootstrap/ie/ie10-viewport-bug-workaround.js"></script>
+    <script src="$!{staticRes}/plugin/bootstrap/3.3.5/ie/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
 <script>

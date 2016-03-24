@@ -2,7 +2,6 @@ package org.walkerljl.sso.sdk;
 
 import java.util.List;
 
-import org.walkerljl.remoting.api.annotation.RemotingService;
 import org.walkerljl.remoting.api.response.RemotingResponse;
 import org.walkerljl.sso.sdk.dto.LoginInfoDto;
 import org.walkerljl.sso.sdk.request.LoginInfoRequest;
@@ -12,7 +11,6 @@ import org.walkerljl.sso.sdk.request.LoginInfoRequest;
  *
  * @author lijunlin
  */
-@RemotingService(address = "/loginInfoSdk")
 public interface LoginInfoSdk {
 	
 	/**
