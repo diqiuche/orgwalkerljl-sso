@@ -15,12 +15,12 @@ import org.walkerljl.sso.service.LoginInfoService;
  * @author lijunlin
  */
 @Service("loginInfoService")
-public class LoginInfoServiceImpl extends BaseServiceImpl<LoginInfo, Long> implements LoginInfoService {
+public class LoginInfoServiceImpl extends BaseServiceImpl<Long, LoginInfo> implements LoginInfoService {
 
 	@Resource private LoginInfoDao loginInfoDao;
 	
 	@Override
-	public BaseDao<LoginInfo, Long> getDao() {
+	public BaseDao<Long, LoginInfo> getDao() {
 		return loginInfoDao;
 	}
 }

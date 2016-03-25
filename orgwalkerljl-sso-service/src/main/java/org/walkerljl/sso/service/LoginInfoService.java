@@ -8,6 +8,6 @@ import org.walkerljl.sso.domain.LoginInfo;
  *
  * @author lijunlin
  */
-public interface LoginInfoService extends BaseService<LoginInfo, Long> {
+public interface LoginInfoService extends BaseService<Long, LoginInfo> {
 
 }

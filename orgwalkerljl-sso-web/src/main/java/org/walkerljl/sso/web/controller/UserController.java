@@ -5,12 +5,12 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.walkerljl.commons.auth.AuthType;
-import org.walkerljl.commons.auth.Authentication;
+import org.walkerljl.identity.sdk.auth.AuthType;
+import org.walkerljl.identity.sdk.auth.Authentication;
 import org.walkerljl.smart.mvc.template.CurdTemplate;
 import org.walkerljl.smart.service.BaseService;
-import org.walkerljl.sso.service.UserService;
 import org.walkerljl.sso.domain.User;
+import org.walkerljl.sso.service.UserService;
 
 /**
  * UserController 
@@ -24,12 +24,10 @@ public class UserController extends CurdTemplate<User> {
 	@Resource private UserService userService;
 	
 	public UserController() {
-		super();
-		setObjectIdentifer("user");
 	}
 	
 	@Override
-	public BaseService<User, Long> getService() {
+	public BaseService<Long, User> getService() {
 		return userService;
 	}
 }

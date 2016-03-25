@@ -4,8 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.walkerljl.commons.auth.AuthType;
-import org.walkerljl.commons.auth.Authentication;
+import org.walkerljl.identity.sdk.auth.AuthType;
+import org.walkerljl.identity.sdk.auth.Authentication;
 import org.walkerljl.smart.mvc.BaseController;
 
 /**
@@ -18,8 +18,6 @@ import org.walkerljl.smart.mvc.BaseController;
 public class PasswordController extends BaseController {
 
 	public PasswordController() {
-		super();
-		setObjectIdentifer("password");
 	}
 	
 	@RequestMapping(value = "/update") 

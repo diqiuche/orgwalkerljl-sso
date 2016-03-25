@@ -27,13 +27,13 @@ import org.walkerljl.sso.service.UserService;
  * @author lijunlin
  */
 @Service("userService")
-public class UserServiceImpl extends BaseServiceImpl<User, Long> implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<Long, User> implements UserService {
 
 	@Resource private UserDao userDao;
 	@Resource private LoginInfoDao loginInfoDao;
 	
 	@Override
-	public BaseDao<User, Long> getDao() {
+	public BaseDao<Long, User> getDao() {
 		return userDao;
 	}
 	

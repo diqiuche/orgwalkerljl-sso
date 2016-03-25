@@ -12,7 +12,7 @@ import org.walkerljl.sso.domain.User;
  * @author lijunlin
  */
 @Repository("userDao")
-public class UserDaoImpl extends BaseDaoImpl<User, Long> implements UserDao {
+public class UserDaoImpl extends BaseDaoImpl<Long, User> implements UserDao {
 
 	public UserDaoImpl() {
 		super.baseNameSpace = "org.walkerljl.sso.dao.UserDao";

@@ -26,13 +26,29 @@
 	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
 	<mvc:annotation-driven/>
 	<mvc:interceptors>
-		<bean class="org.walkerljl.smart.mvc.interceptor.DefaultAppInterceptor"/>
+		<bean class="org.walkerljl.smart.mvc.interceptor.AppInterceptor">
+			<property name="upgradeingPage" value="${app.address}/upgrading" />
+		</bean>
+		<!--<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>-->
+		<bean class="org.walkerljl.smart.mvc.interceptor.AuthenticationInterceptor">
+			<property name="authenticator" ref="authenticator" />
+			<property name="authenticationProvider" ref="authenticationProvider" />
+			<!-- 无权访问页面 -->
+			<property name="accessDeniedPage" value="${app.address}/accessDenied" />
+		</bean>
 	</mvc:interceptors>
 	
 	<!-- 权限校验器 -->
-	<bean id="authenticator" class="org.walkerljl.commons.auth.DefaultAuthenticator"/>
+	<bean id="authenticator" class="org.walkerljl.identity.sdk.auth.defaults.DefaultAuthenticator"/>
 	<!-- MVC Supporter -->
 	<bean id="mvcSupporter" class="org.walkerljl.smart.mvc.DefaultMvcSupporter"/>
+	<!-- 鉴权提供者 -->
+	<bean id="authenticationProvider" class="org.walkerljl.service.identity.auth.impl.DefaultAuthenticationProvider">
+		<!-- AppId -->
+		<property name="appId" value="1" />
+		<!-- Token -->
+		<property name="token" value="xx" />
+	</bean>
 	
 	<!-- WEB异常解析处理 -->
 	<bean id="globalExceptionResolver" class="org.walkerljl.smart.mvc.interceptor.GlobalExceptionResolver">

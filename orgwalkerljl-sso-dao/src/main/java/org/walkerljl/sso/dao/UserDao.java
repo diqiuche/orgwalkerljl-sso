@@ -9,6 +9,6 @@ import org.walkerljl.sso.domain.User;
  *
  * @author lijunlin
  */
-public interface UserDao extends BaseDao<User, Long> {
+public interface UserDao extends BaseDao<Long, User> {
 	
 }

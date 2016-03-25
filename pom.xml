@@ -18,9 +18,8 @@
 
 	<properties>
 		<jdk.version>1.8</jdk.version>
-		<orgwalkerljl.commons.version>1.0.2-SNAPSHOT</orgwalkerljl.commons.version>
 		<orgwalkerljl.remoting.version>0.0.1-SNAPSHOT</orgwalkerljl.remoting.version>
-		<orgwalkerljl.smart.version>1.0.0-SNAPSHOT</orgwalkerljl.smart.version>
+		<orgwalkerljl.smart.version>1.1.0-SNAPSHOT</orgwalkerljl.smart.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -65,7 +64,7 @@
 		<profile>
 			<id>product</id>
 			<properties>
-				<pfile>production.properties</pfile>
+				<pfile>product.properties</pfile>
 			</properties>
 		</profile>
 	</profiles>
@@ -95,21 +94,9 @@
 			</dependency>
 
 			<dependency>
-				<groupId>org.walkerljl.remoting</groupId>
-				<artifactId>orgwalkerljl-remoting-api</artifactId>
-				<version>${orgwalkerljl.remoting.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.walkerljl.remoting</groupId>
-				<artifactId>orgwalkerljl-remoting-provider-hessian</artifactId>
-				<version>${orgwalkerljl.remoting.version}</version>
-			</dependency>
-
-			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>servlet-api</artifactId>
 				<version>2.5</version>
-				<scope>provided</scope>
 			</dependency>
 
 			<dependency>

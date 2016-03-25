@@ -5,8 +5,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.walkerljl.commons.auth.AuthType;
-import org.walkerljl.commons.auth.Authentication;
+import org.walkerljl.identity.sdk.auth.AuthType;
+import org.walkerljl.identity.sdk.auth.Authentication;
 import org.walkerljl.smart.mvc.template.CurdTemplate;
 import org.walkerljl.smart.service.BaseService;
 import org.walkerljl.sso.domain.LoginInfo;
@@ -24,11 +24,11 @@ public class LoginInfoController extends CurdTemplate<LoginInfo> {
 	@Resource private LoginInfoService loginInfoService;
 	
 	public LoginInfoController() {
-		setObjectIdentifer("logininfo");
+		
 	}
 	
 	@Override
-	public BaseService<LoginInfo, Long> getService() {
+	public BaseService<Long, LoginInfo> getService() {
 		return loginInfoService;
 	}
 }

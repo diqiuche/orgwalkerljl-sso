@@ -1,10 +1,9 @@
 package org.walkerljl.sso.sdk;
 
-
 import java.io.Serializable;
 import java.util.Date;
 
-import org.walkerljl.sso.sdk.dto.AgentType;
+import org.walkerljl.sso.sdk.enums.AgentType;
 
 /**
  *

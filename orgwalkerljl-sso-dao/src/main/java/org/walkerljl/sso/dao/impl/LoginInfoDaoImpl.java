@@ -11,6 +11,6 @@ import org.walkerljl.sso.domain.LoginInfo;
  * @author lijunlin
  */
 @Repository("loginInfoDao")
-public class LoginInfoDaoImpl extends BaseDaoImpl<LoginInfo, Long> implements LoginInfoDao {
+public class LoginInfoDaoImpl extends BaseDaoImpl<Long, LoginInfo> implements LoginInfoDao {
 
 }

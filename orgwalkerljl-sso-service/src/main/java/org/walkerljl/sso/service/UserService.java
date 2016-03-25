@@ -11,7 +11,7 @@ import org.walkerljl.sso.pojo.LoginCommand;
  *
  * @author lijunlin
  */
-public interface UserService extends BaseService<User, Long> {
+public interface UserService extends BaseService<Long, User> {
 	
 	/**
 	 * 登录验证
