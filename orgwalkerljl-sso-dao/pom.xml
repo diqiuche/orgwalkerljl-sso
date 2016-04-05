@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.walkerljl.sso</groupId>
+		<groupId>org.walkerljl</groupId>
 		<artifactId>orgwalkerljl-sso</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
@@ -10,18 +10,18 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.walkerljl.sso</groupId>
+			<groupId>org.walkerljl</groupId>
 			<artifactId>orgwalkerljl-sso-common</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.walkerljl.sso</groupId>
+			<groupId>org.walkerljl</groupId>
 			<artifactId>orgwalkerljl-sso-domain</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.walkerljl.smart</groupId>
+			<groupId>org.walkerljl</groupId>
 			<artifactId>orgwalkerljl-smart-dao</artifactId>
 		</dependency>
 		<dependency>
