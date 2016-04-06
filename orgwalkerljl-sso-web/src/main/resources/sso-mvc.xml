@@ -43,9 +43,9 @@
 	<!-- MVC Supporter -->
 	<bean id="mvcSupporter" class="org.walkerljl.smart.mvc.DefaultMvcSupporter"/>
 	<!-- 鉴权提供者 -->
-	<bean id="authenticationProvider" class="org.walkerljl.service.identity.auth.impl.DefaultAuthenticationProvider">
+	<bean id="authenticationProvider" class="org.walkerljl.smart.mvc.auth.DummyAuthenticationProvider">
 		<!-- AppId -->
-		<property name="appId" value="1" />
+		<property name="appId" value="sso" />
 		<!-- Token -->
 		<property name="token" value="xx" />
 	</bean>

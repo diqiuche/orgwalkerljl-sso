@@ -14,6 +14,7 @@ import org.walkerljl.commons.Message;
 import org.walkerljl.commons.util.StringUtils;
 import org.walkerljl.smart.domain.ViewResult;
 import org.walkerljl.smart.mvc.DefaultIndexController;
+import org.walkerljl.smart.mvc.ObjectIdentifier;
 import org.walkerljl.sso.domain.User;
 import org.walkerljl.sso.enums.AgentType;
 import org.walkerljl.sso.pojo.LoginCommand;
@@ -37,6 +38,10 @@ public class IndexController extends DefaultIndexController {
 	private String ssoAuthCookieKey;
 	
 	@Resource private UserService userService;
+	
+	public IndexController() {
+		setObjectIdentifier(new ObjectIdentifier("首页", "common"));
+	}
 	
 	/**
 	 * 覆盖父类的login方法和URL

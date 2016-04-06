@@ -1,4 +1,4 @@
-<input type="hidden" id="formName" name="formName" value="$!{formName}" />
+<input type="hidden" id="formName" name="formName" value="$!{objectIdentifier.code}" />
 <input type="hidden" id="currentPage" name="currentPage" value="$!{model.currentPage}" />
 <input type="hidden" id="pageSize" name="pageSize" value="20" />
 <input type="hidden" id="totalCount" name="totalCount" value="$!{model.totalCount}" />

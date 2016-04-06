@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.walkerljl.identity.sdk.auth.AuthType;
 import org.walkerljl.identity.sdk.auth.Authentication;
+import org.walkerljl.smart.mvc.ObjectIdentifier;
 import org.walkerljl.smart.mvc.template.CurdTemplate;
 import org.walkerljl.smart.service.BaseService;
 import org.walkerljl.sso.domain.User;
@@ -24,6 +25,7 @@ public class UserController extends CurdTemplate<User> {
 	@Resource private UserService userService;
 	
 	public UserController() {
+		setObjectIdentifier(new ObjectIdentifier("用户信息", "user"));
 	}
 	
 	@Override

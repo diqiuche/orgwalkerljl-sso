@@ -8,7 +8,6 @@
 
 	<properties>
 		<jdk.version>1.8</jdk.version>
-		<orgwalkerljl.remoting.version>0.0.1-SNAPSHOT</orgwalkerljl.remoting.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 

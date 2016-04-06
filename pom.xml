@@ -13,7 +13,6 @@
 		<module>orgwalkerljl-sso-sdk</module>
 		<module>orgwalkerljl-sso-service</module>
 		<module>orgwalkerljl-sso-web</module>
-		<module>orgwalkerljl-sso-openservice</module>
 	</modules>
 
 	<properties>
