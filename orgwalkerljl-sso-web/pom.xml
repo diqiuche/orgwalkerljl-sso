@@ -13,7 +13,7 @@
 		<filters>
 			<filter>src/main/profiles/${pfile}</filter>
 		</filters>
-		<finalName>sso-web</finalName>
+		<finalName>orgwalkerljl-sso-web</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -30,13 +30,6 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<warName>${project.artifactId}</warName>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>tomcat-maven-plugin</artifactId>
-				<configuration>
-					<warFile>sso-web.war</warFile>
 				</configuration>
 			</plugin>
 		</plugins>
