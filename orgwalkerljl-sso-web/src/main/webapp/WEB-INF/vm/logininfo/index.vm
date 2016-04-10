@@ -1,3 +1,4 @@
+
 #parse("common/index/head.vm") <!-- 通用Index头部-->
 <thead>
 <tr>
